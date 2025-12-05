@@ -1,0 +1,184 @@
+/* General Styles */
+.wishtlistMain {
+  margin-bottom: 2rem;
+  padding-top: 20px;
+}
+
+/* Breadcrumb Styles */
+.prettyBreadcrumb {
+  padding: 15px 0;
+  background-color: #f8f9fa;
+}
+
+.breadcrumbLink {
+  color: #6e4a1e;
+  text-decoration: none;
+}
+
+.breadcrumbLink:hover {
+  text-decoration: underline;
+}
+
+/* Heading Styles */
+.wishlistHeading {
+  font-weight: bold;
+  color: #5d4037;
+  text-align: center;
+  padding: 0px 0 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.wishlistHeading h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+/* Table Styles */
+.wishlistTable {
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: transparent;
+}
+
+.wishlistTable th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.productImg {
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.trashIcon {
+  cursor: pointer;
+  color: #aaa;
+  transition: color 0.2s;
+}
+
+.trashIcon:hover {
+  color: red;
+}
+
+/* Mobile Card Styles */
+.wishlistCard {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  height: 100%;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.wishlistCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.mobileProductImg {
+  border-radius: 5px;
+  object-fit: cover;
+  width: 100%;
+  max-height: 120px;
+}
+
+/* Form Elements */
+.quantityInput {
+  background: #fafafa;
+  width: 80px;
+  border: 1px solid #ddd;
+}
+
+.actionBtn {
+  background: #6e4a1e !important;
+  border: none;
+  transition: opacity 0.2s;
+}
+
+.actionBtn:hover {
+  opacity: 0.9;
+}
+
+/* Share Section */
+.shareSection {
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.socialIcon {
+
+  color: #6e4a1e;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.socialIcon:hover {
+  transform: scale(1.1);
+}
+
+.addAllBtn {
+  background: #6e4a1e;
+  padding: 8px 20px;
+}
+
+.wishlighicon{
+  font-size: 50px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .wishlist-card-body {
+    position: relative;
+  }
+
+  .wishlist-card-body img{
+    width: 100%;
+    height: 110px;
+  }
+
+  .wishlist-card-body h5{
+   font-size: 14px;
+  }
+
+  .wishlist-card-body p{
+    font-size: 12px;
+   }
+  .trashIcon {
+    top: 5px;
+    right: 5px;
+    position: absolute;
+    color: red;
+  }
+
+  .wishlistHeading {
+    padding: 0px 0 20px;
+  }
+
+  .wishlistHeading h1 {
+    font-size: 1.8rem;
+  }
+
+  .wishlistCard {
+    margin-bottom: 15px;
+  }
+
+  .wishlistTable {
+    font-size: 0.95rem;
+  }
+
+  .wishlighicon {
+    font-size: 28px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .wishlistHeading {
+    text-align: center;
+  }
+
+  .wishlist-card-body {
+    padding: 5px !important;
+  }
+}

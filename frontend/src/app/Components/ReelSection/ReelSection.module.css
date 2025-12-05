@@ -1,0 +1,52 @@
+.reel-section {
+  padding: 20px 20px 40px;
+}
+
+.videoContainer {
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  width: 100%;
+}
+
+.expanded {
+  transform: scale(1.1);
+  z-index: 10;
+  /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); */
+}
+
+.shrunken {
+  opacity: 0.7;
+  transform: scale(0.9);
+  filter: blur(1px);
+}
+
+.overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.videoContainer:hover .overlay,
+.expanded .overlay {
+  opacity: 1;
+}
+
+.videoElement {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  background-color: #000;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+.swiper{
+  overflow: visible !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+ display: none ! important;
+}

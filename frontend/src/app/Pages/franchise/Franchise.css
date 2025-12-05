@@ -1,0 +1,141 @@
+/* Reset & basics */
+.franchise-page {
+    background-color: #fdfcfb;
+    padding-bottom: 60px;
+  }
+
+  .hero-section {
+    background: linear-gradient(to right, #b08d57, #e2c49c);
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+    border-radius: 0 0 60px 60px;
+  }
+  
+  .hero-section h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .hero-section p {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+  .franchise-content-row{
+    padding: 30px 0 0;
+  }
+  .franchise-content h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #2c2c2c;
+  }
+  
+  .franchise-benefits {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .franchise-benefits li {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    padding-left: 28px;
+    position: relative;
+  }
+  
+  .franchise-benefits li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #b08d57;
+    font-weight: bold;
+  }
+  
+  /* Form Styling */
+  .franchise-form {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.06);
+    margin-top: 20px;
+  }
+  
+  .franchise-form h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .franchise-form input,
+  .franchise-form textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    background-color: #f9f9f9;
+  }
+  
+  .franchise-form input:focus,
+  .franchise-form textarea:focus {
+    border-color: #b08d57;
+    outline: none;
+    background-color: #fff;
+  }
+  
+  .franchise-submit-btn {
+    display: block;
+    width: 100%;
+    background-color: #b08d57;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .franchise-submit-btn:hover {
+    background-color: #a17945;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero-section h1 {
+      font-size: 22px;
+    }
+  .franchise-content-row{
+   padding: 0;
+  }
+    .hero-section {
+      padding: 10px 20px;
+    }
+
+
+    .hero-section p {
+      font-size: 1rem;
+    }
+  
+    .franchise-form {
+      padding: 0px;
+    }
+    .franchise-page{
+      padding-bottom: 10px;
+    }
+    .container {
+      margin-top: 40px;
+    }
+    .franchise-form input, .franchise-form textarea{
+      padding: 5px 18px;
+    }
+  }
+  

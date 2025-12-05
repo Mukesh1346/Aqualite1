@@ -1,0 +1,273 @@
+/* navbar.css */
+
+.top-navbar {
+  background: #153964;
+ 
+  font-size: 14px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.fast-delivery {
+  /* color: var(--blue); */
+  color:white !important;
+}
+
+.middle-navbar {
+  background-color: #fff;
+  flex-wrap: wrap;
+}
+
+.logo img {
+  max-height: 60px;
+}
+
+.btn-brown {
+  background-color: var(--blue) !important;
+  color: white !important;
+  border: none;
+}
+
+.helpline {
+  color: white !important;
+}
+
+.btn-brown:hover {
+  background-color: var(--blue) !important;
+  color: white !important;
+}
+
+.bottom-navbar {
+  border-top: 1px solid #eaeaea;
+}
+
+.nav-link {
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  color: #ffffff !important;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: white ;
+}
+
+/* FIRST COLUMN ITEM STYLE FIXED */
+.first-dropdown-item {
+  font-weight: bold !important;
+  color: var(--brown) !important;
+  pointer-events: none;
+  cursor: default;
+  margin-bottom: 0 !important;
+}
+
+/* Mega Dropdown Styles */
+.bottom-navbar {
+  position: relative;
+}
+
+.nav-item.dropdown {
+  position: static;
+}
+
+.mega-dropdown {
+  position: absolute;
+  top: 80%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 30px;
+  border-top: 1px solid #eaeaea;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(15px);
+  transition: all 0.3s ease;
+}
+
+.nav-item.dropdown:hover .mega-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.mega-dropdown h4 {
+  color: var(--brown);
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 10px;
+}
+
+.dropdown-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.dropdown-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mega-dropdown .dropdown-item {
+  display: block;
+  padding: 8px 0;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.mega-dropdown .dropdown-item:hover {
+  color: var(--brown);
+  padding-left: 5px;
+}
+
+.responsive-main {
+  display: none;
+}
+
+.responsive-topbar{
+  display: none;
+}
+
+
+.mobile-menu-button button {
+  width: 18%;
+  font-size: 1.2rem;
+}
+
+.mobile-menu-dropdown {
+  background: #fff;
+  border-top: 1px solid #ddd;
+}
+
+.mobile-menu-dropdown ul li {
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid lightgray;
+}
+
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  
+  .main-navbar .container-fluid {
+    display: none;
+  }
+
+  .mega-dropdown {
+    position: static;
+    width: 100%;
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    padding: 15px;
+  }
+
+  .mega-dropdown h4 {
+    font-size: 16px;
+  }
+
+  .dropdown-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mega-dropdown .dropdown-item {
+    padding: 6px 0;
+  }
+
+  .middle-navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-bar {
+    width: 100% !important;
+    margin-bottom: 10px;
+  }
+
+  .auth-section {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .auth-section span,
+  .auth-section button {
+    font-size: 14px;
+  }
+
+  .main-navbar {
+    display: none;
+  }
+
+  .responsive-main {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .responsive-main p {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0px;
+  }
+
+  .responsive-main p a {
+    width: 100%;
+    display: grid;
+    font-size: 12px;
+    justify-content: center;
+  }
+
+  .responsive-navbar {
+    position: fixed;
+    bottom: 0;
+    z-index: 9999;
+    width: 100%;
+    background-color: white;
+
+  }
+
+  .responsive-icons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    color: #695e5e;
+  }
+
+  .responsve-topbar-main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px 0px;
+  }
+
+  .topbar-search{
+    width: 100%;
+    padding: 10px;
+  }
+
+  .topbar-search input{
+    width: 100%;
+    padding: 5px 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+  }
+
+  .responsive-topbar-icons{
+    font-size: 40px;
+  }
+
+  .responsive-topbar{
+    display: block;
+  }
+  
+}

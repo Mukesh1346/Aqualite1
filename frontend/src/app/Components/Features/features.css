@@ -1,0 +1,54 @@
+.mainFeatureSection{
+    background-color:#153964;
+    color: white;
+}
+
+.FeaturesSection{
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+
+    
+}
+.FeatureCardSection{
+    display: flex;
+    gap:10px;
+   justify-content: center;
+   margin:20px;
+   align-items: center;
+}
+
+@media (max-width:768px){
+    .FeaturesSection {
+        flex-wrap: wrap;
+    }
+
+    .mainFeatureSection{
+        border-radius: 30px !important;
+    }
+    .FeatureCardSection {
+        border-top: 1px solid gray;
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin: 8px;
+        align-items: center;
+    }
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

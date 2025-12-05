@@ -1,0 +1,42 @@
+.aboutUs {
+    padding: 20px 0;
+}
+
+.aboutUsText h3 {
+    font-size: 20px;
+}
+
+.aboutUsText h1 {
+    font-size: 40px;
+    color: var(--brown);
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 50px;
+    text-transform: capitalize;
+}
+
+
+.aboutUsImage img {
+    width: 100%;
+    height: auto;
+}
+
+.about-arrow-icon {
+    color: var(--brown);
+    font-size: 30px;
+}
+
+@media only screen and (max-width:768px) {
+
+    .aboutUsText h1 {
+        font-size: 22px;
+        line-height: 30px;
+    }
+
+    .aboutUsContent {
+        margin-top: 1rem;
+    }
+    .about-arrow-icon{
+        font-size: 20px;
+    }
+}

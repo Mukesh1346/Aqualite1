@@ -1,0 +1,105 @@
+/* public/css/herosection.css */
+
+/* Style the Hero Carousel */
+.herosectionSec {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Adjust images to fit well */
+.herosectionSec-inner img {
+  height: 600px;
+  object-fit: cover;
+  filter: brightness(80%);
+  transition: transform 0.5s ease-in-out;
+  opacity: 0.9;
+}
+
+/* Zoom and darken effect on hover */
+.herosectionSec-inner .herosectionSec-item:hover img {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+/* Caption Style with animation */
+.herosectionSec-caption {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px 30px;
+  border-radius: 12px;
+  bottom: 30px;
+  animation: fadeInUp 0.6s ease-in-out;
+}
+
+.herosectionSec-caption h5 {
+  font-size: 28px;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.herosectionSec-caption p {
+  font-size: 18px;
+  color: #f1f1f1;
+  margin-top: 10px;
+  opacity: 0.8;
+}
+
+/* Call to Action Button */
+.herosectionSec-caption .herosectionSec-btn {
+  background-color:  var(--blue);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 50px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.herosectionSec-caption .herosectionSec-btn:hover {
+  background-color: #081f3b;
+  transform: scale(1.05);
+}
+
+/* Custom control icons */
+.herosectionSec-control .carousel-control-prev-icon,
+.herosectionSec-control .carousel-control-next-icon {
+  background-color: #000;
+  border-radius: 38%;
+  padding: 10px;
+}
+
+.carousel-control-prev-icon,.carousel-control-next-icon {
+  background-size: 60% 60% !important;
+}
+
+/* Carousel indicators */
+.herosectionSec-indicators [data-bs-target] {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  opacity: 0.7;
+}
+
+.herosectionSec-indicators .active {
+  background-color:  var(--brown);
+  opacity: 1;
+}
+
+/* Keyframe for Fade In effect */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width:768px){
+  .herosectionSec-inner img {
+    height: 260px;
+}
+}

@@ -1,0 +1,32 @@
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+
+    .titleSec {
+      font-size: small !important;        
+
+    }
+
+    .product-card{
+        width:fit-content;
+    }
+
+    .discount{
+        display: none;
+    } 
+    .swiper-slide {
+        width: 80px !important;
+        margin-right: 5px !important;
+    }
+    
+
+
+}

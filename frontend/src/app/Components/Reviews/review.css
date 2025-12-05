@@ -1,0 +1,108 @@
+.ReviewBanner{
+    width: 90%;
+    height: 600px;
+    margin: 20px 0px;
+}
+.ReviewsMainSec{
+    padding:20px;
+   
+}
+.CardTopSection{
+    display: flex;
+    gap:10px;
+}
+.ReviewCard{
+          padding:10px 20px; 
+}
+.CardSection{
+    display: flex;
+    gap:10px;
+
+}
+.detailSec p{
+    color:#153964;
+     font-weight: 600;
+
+}
+.ReviewRightSec{
+    padding:20px;
+    font-family: Tiempos;
+    font-size: 16px;
+   
+}
+.detailSec h2{
+    color:#153964;
+     font-weight: 600;
+
+}
+
+
+.detailSec h5{
+    color:gray;
+     font-weight: 600;
+
+}
+
+.socialImg{
+    width: 60%;
+    height:60px;
+}
+
+.socialImgSec{
+    padding:20px ;
+}
+
+.ClientImg{
+    height: 60px;
+    width: 60px;
+    border-radius: 10px;
+}
+
+.detailsSec p{
+    font-size: 10px;
+    padding:2px 0px;
+    margin:0px;
+
+}
+
+.detailsSec h3{ 
+
+    font-size: 14px;
+
+}
+
+.bottomDetailSec p{
+    font-size: 12px;
+
+}
+
+.swiper-initialized {
+    border-radius: 10px !important;
+}
+
+/* Change arrow icon size */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 28px !important;   /* decrease arrow size */
+  color:#153964;
+}
+
+.desc{
+    text-align: center;
+}
+
+.swiper-button-prev, .swiper-rtl .swiper-button-next {
+    left: var(--swiper-navigation-sides-offset, -6px);
+    right: auto;
+}
+
+
+.swiper-button-prev, .swiper-rtl .swiper-button-next {
+    left: var(--swiper-navigation-sides-offset, -6px);
+    right: auto;
+}
+
+.ReviewBannerSection{
+    display: flex;
+    justify-content: right;
+}
