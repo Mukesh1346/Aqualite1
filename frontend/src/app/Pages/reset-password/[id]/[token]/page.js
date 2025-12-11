@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import '../../../forgot-password/forgot.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import logo from '@/app/Components/assets/logo.webp';
+import logo from '@/app/Components/assets/logo.png';
 import toast from 'react-hot-toast';
 import { axiosInstance } from '@/app/utils/axiosInstance';
 import { useParams } from 'next/navigation';

@@ -301,8 +301,8 @@ const Navbar = () => {
           <div className="logo text-center mx-auto">
             <Link href="/">
               <Image
-                src="/logo.jpg"
-                alt="Manmohan Furnitures"
+                src="/logo.png"
+                alt="Mattress"
                 width={150}
                 height={40}
               />
@@ -494,7 +494,7 @@ const Navbar = () => {
           <div className="text-center flex-grow-1">
             <Link href="/">
               <Image
-              src="/logo.jpg"
+              src="/logo.png"
                 alt="Manmohan Furnitures"
                 width={120}
                 height={30}

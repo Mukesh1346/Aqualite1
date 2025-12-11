@@ -4,7 +4,7 @@ import './forgot.css';
 // import logo from '@/app/Components/assets/logo.webp';
 import Image from 'next/image';
 import Link from 'next/link';
-import logo from '@/app/Components/assets/logo.webp'
+import logo from '@/app/Components/assets/logo.png'
 import toast from 'react-hot-toast';
 import { axiosInstance } from '@/app/utils/axiosInstance';
 
