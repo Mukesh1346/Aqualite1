@@ -7,7 +7,7 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import { axiosInstance } from "@/app/utils/axiosInstance";
 import { useDispatch, useSelector } from "react-redux";
-import logo from "../../../../public/logo.png";
+
 import { NoItem } from "@/app/utils/NoItem";
 import {
   fetchCartItems,

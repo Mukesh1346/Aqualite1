@@ -1,7 +1,6 @@
 "use client"
 import React, { useState } from 'react'
 import './contactus.css'
-import logo from "../../../../public/logo.png"
 import Image from 'next/image'
 import Link from 'next/link'
 import { IoIosMailOpen } from "react-icons/io";
@@ -78,7 +77,14 @@ const Page = () => {
                     <div className='row'>
                         <div className='col-md-7'>
                             <div className='contact-details'>
-                                <Image src={logo} alt="Logo" className='logo' />
+                               <Image 
+  src="/logo.png" 
+  width={120}     // whatever size you want
+  height={60} 
+  alt="Logo" 
+  className='logo' 
+/>
+
                                 <p className='contact-mail'>
                                     <Link href="mailto:info.manmohanfurniture@gmail.com"> <IoIosMailOpen /> info.manmohanfurniture@gmail.com</Link>
                                 </p>
