@@ -62,8 +62,9 @@ useEffect(() => {
             <hr />
             <p className="text-center">
               Explore our wide range of kitchen furniture, designed to enhance
-              your cooking and dining experience.
+              your cooking and dining experience  
             </p>
+            <b>sample</b>
           </div>
           <div className="row">
             {
