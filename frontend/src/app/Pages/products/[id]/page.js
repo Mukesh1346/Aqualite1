@@ -395,11 +395,11 @@ const Page = () => {
                   <PopUpForm
   open={showCustomPopup}
   onClose={() => setShowCustomPopup(false)}
-/>
+/>   
 
 
                     <div className="ThicknessSection">
-                      <h3 className="detailTitle">Thinckness Available</h3>
+                      <h3 className="detailTitle mb-3">Thinckness Available</h3>
                       <div className="ThicknesSection">
                         {thicknessOptions.map((item) => (
                           <label
