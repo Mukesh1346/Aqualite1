@@ -352,7 +352,7 @@ const Navbar = () => {
         </div>
 
         {/* Bottom Navbar */}
-        <nav className="bottom-navbar navbar navbar-expand-lg navbar-light bg-light text-dark px-3">
+        <nav className="bottom-navbar  navbar navbar-expand-lg  px-3">
           <button
             className="navbar-toggler"
             type="button"

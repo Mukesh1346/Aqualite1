@@ -1,12 +1,12 @@
 .profile-layout {
   height: 100vh;
   overflow: hidden;
-  background: linear-gradient(135deg, #5d4037, #f5f7fa);
+  background: linear-gradient(135deg, #153964, #f5f7fa);
 }
 
 .sidebar {
   display: flex;
-  background: linear-gradient(135deg, #5b3917, #000000);
+  background: linear-gradient(135deg, #153964, #000000);
   color: white;
   min-height: 100%;
   box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);

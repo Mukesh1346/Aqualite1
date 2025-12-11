@@ -137,8 +137,8 @@ const SignupPage = () => {
         <div className="signup-furniture-left">
           <div className="furniture-overlay-text">
             <div className="text-center">
-              <h1>Build Your Dream Space</h1>
-              <p>Elegant furniture for every corner of your life.</p>
+              <h1 className="SignupTitle">Build Your Dream Space</h1>
+              <p className="SignupSubTitle">Elegant furniture for every corner of your life.</p>
             </div>
 
             <Image src="/couch.png" height={500} width={700} alt="couch img" />

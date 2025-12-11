@@ -81,7 +81,7 @@
   .shop-btn {
     width: 100%;
     padding: 10px;
-    background: #ff8c00;
+    background: #234977;
     border: none;
     border-radius: 30px;
     color: white;
@@ -90,7 +90,7 @@
   }
   
   .shop-btn:hover {
-    background: #e67c00;
+    background: #07325c;
   }
   
   /* ARROW BUTTONS */

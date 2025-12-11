@@ -1,57 +1,68 @@
-"use client"
-import './productItems.css'
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+"use client";
+import "./productItems.css";
+import React from "react";
+import Link from "next/link";
+import { Star } from "lucide-react";
 
-// Swiper imports
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
-import Link from 'next/link';
+const Product = ({ products }) => {
+  const subName = products?.[0]?.subCategory?.subCategoryName || "";
 
-const Product = ({products}) => {
- 
-    return (
-        <>
-       
-        <div className='product-component'>
-            <div className='container'>
-                <div className='text-center '>
-                    <h2 className='titleSec'>See More {products?.[0]?.subCategory?.subCategoryName || ''} Collection</h2>
+  return (
+    <div className="product-component">
+      <div className="container">
+        <h2 className="titleSec text-center">
+          See More {subName} Collection
+        </h2>
+
+        {/* GRID VIEW */}
+        <div className="product-grid">
+          {products?.map((product) => (
+            <div className="card-wrapper" key={product._id}>
+              <Link
+                href={`/Pages/products/${product._id}`}
+                className="product-card-new"
+              >
+                {/* IMAGE */}
+                <div className="img-box">
+                  <img
+                    src={product.images?.[0]}
+                    alt={product.productName}
+                    className="product-img"
+                    loading="lazy"
+                  />
                 </div>
-            <Swiper
-            style={{padding:"0px 0px 20px 0px"}}
-                slidesPerView={4}
-                spaceBetween={30}
-                pagination={{
-                    clickable: true,
-                }}
-                modules={[Pagination]}
-                className="mySwiper"
-            >
-                {products?.map((product, index) => (
-                    <SwiperSlide key={index}>
-                        <div className='product-card'>
-                            <Link href={`/Pages/products/${product._id}`} className='product-link'>
-                                <img className='product-image' src={product.images[0]} alt='product-image' width={300} height={300} />
-                                <div className='product-details'>
-                                    <h3>{product.productName}</h3>
-                                    <div className='product-price-section'>
-                                        <p className='final-price'> ₹{product.finalPrice}</p>
-                                        <p className='price'><del>₹{product.price}</del></p>
-                                        <p className='discount'>{product.discountPrice}% OFF</p>
-                                    </div>
-                                </div>
-                            </Link>
-                        </div>
-                    </SwiperSlide>
-                ))}
-            </Swiper>
+
+                {/* DETAILS */}
+                <div className="card-content">
+                  {/* Rating */}
+                  <div className="rating">
+                    <Star size={18} color="#f5b50a" fill="#f5b50a" />
+                    <span className="rate">4.8</span>
+                    <span className="reviews">(1200+)</span>
+                  </div>
+
+                  {/* Name */}
+                  <h3 className="product-title">{product.productName}</h3>
+
+                  {/* Price */}
+                  <div className="price-section">
+                    <span className="price">₹{product.finalPrice}</span>
+                    <span className="mrp">₹{product.price}</span>
+                    <span className="offer">
+                      {product.discount}% OFF
+                    </span>
+                  </div>
+
+                  {/* Button */}
+                  <button className="shop-btn">View Details</button>
+                </div>
+              </Link>
             </div>
+          ))}
         </div>
-        </>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Product;

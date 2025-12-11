@@ -163,7 +163,7 @@ export default function Products() {
                     </h6>
                   </div>
                   <div className="card-dropdown">
-                    <div className="d-flex gap-3">
+                    <div className="d-flex animatedDetails gap-3">
                       <Image
                         src={product?.images[product?.images.length - 1]}
                         alt="subimage"

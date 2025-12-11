@@ -120,7 +120,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                     <p className="mt-3 fw-bold">What would you like to buy?</p>
                     <div className="d-flex flex-wrap gap-2 justify-content-center">
 
-                      <Link href="/Pages/All-category" className="text-primary"><button className="btn btn-secondary w-100">Shop All Products</button></Link>
+                      <Link href="/Pages/All-category" className="text-primary"><button className="CartButton w-100">Shop All Products</button></Link>
                       {/* <Link href="/sofas-seating" className="text-primary">Sofas</Link>
                       <Link href="/kitchen-dining" className="text-primary">Kitchen</Link> */}
                     </div>

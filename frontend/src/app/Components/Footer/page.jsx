@@ -80,10 +80,10 @@ const Footer = () => {
         </div> */}
 <div className="logoSection">
   <Image
-    src="/logo.webp"
+    src="/logo.png"
     alt="Manmohan Furnitures Logo"
-    width={100}
-    height={60}
+    width={140}
+    height={40}
   />
   <p className="logoText" style={{ marginRight: "20px" }}>
     Our website offers a wide range of products, including premium dupes

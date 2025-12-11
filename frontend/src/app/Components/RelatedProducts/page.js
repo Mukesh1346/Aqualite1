@@ -23,7 +23,7 @@ import { generateSlug } from "@/app/utils/generate-slug";
 
 const Page = ({ products }) => {
 
-  const router = useRouter();
+  const router = useRouter();  
   const priceRanges = [
     { label: "Under ₹500", priceMin: 0, priceMax: 500 },
     { label: "₹500 - ₹1,000", priceMin: 500, priceMax: 1000 },
@@ -278,7 +278,7 @@ const Page = ({ products }) => {
                       ) ? (
                         <FaHeart
                           className="wishlist-icon"
-                          style={{ color: "#ffd632" }}
+                          style={{ color: "#ff3232ff" }}
                         />
                       ) : (
                         <FaRegHeart className="wishlist-icon" />

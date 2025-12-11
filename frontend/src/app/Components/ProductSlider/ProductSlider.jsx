@@ -7,6 +7,7 @@ import pic1 from '@/app/Components/assets/pic1.jpg'
 import pic2 from '@/app/Components/assets/pic2.jpg'
 import pic3 from '@/app/Components/assets/pic3.jpg'
 import pic4 from '@/app/Components/assets/pic4.jpg'
+import Link from "next/link";
 
 export default function ProductSlider() {
   const sliderRef = useRef();
@@ -121,7 +122,7 @@ export default function ProductSlider() {
                 <span className="offer">{item.offer}</span>
               </div>
 
-              <button className="shop-btn">Shop Now</button>
+             <Link href="/Pages/products"> <button className="shop-btn">Shop Now</button></Link>
             </div>
           </div>
         ))}

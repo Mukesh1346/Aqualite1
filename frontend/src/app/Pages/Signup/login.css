@@ -55,7 +55,7 @@
   .furniture-form-title {
     font-size: 2rem;
     font-weight: bold;
-    color: #5d4037;
+    color: #153964;
     margin-bottom: 1.5rem;
     text-align: center;
   }
@@ -118,7 +118,7 @@
     top: 50%;
     right: 8px;
     transform: translateY(-50%);
-    background-color: #8d6e63;
+    background-color: #153964;
     color: white;
     border: none;
     padding: 8px 14px;
@@ -129,7 +129,7 @@
   }
   
   .small-btn:hover {
-    background-color: #5d4037;
+    background-color: #153964;
   }
   
   @keyframes spin {
@@ -144,7 +144,7 @@
   .furniture-submit-btn {
     width: 100%;
     padding: 0.9rem;
-    background-color: #8d6e63;
+    background-color: #577293;
     color: white;
     border: none;
     font-size: 1.1rem;
@@ -153,7 +153,7 @@
   }
   
   .furniture-submit-btn:hover {
-    background-color: #5d4037;
+    background-color: #153964;
   }
   
   .help-text {
@@ -167,6 +167,15 @@
     text-decoration: none;
     font-weight: bold;
   }
+
+.SignupTitle{
+  color:#153964;
+}
+.SignupSubTitle{
+  color:#355882;
+
+}
+
   @media (max-width: 768px) {
     .furniture-overlay-text img{
        height:60%;

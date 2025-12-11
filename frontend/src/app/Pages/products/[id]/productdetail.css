@@ -1,6 +1,6 @@
 :root {
-    --brownlight: #5d4037;
-    --browndark: #5d4037;
+    --brownlight:  #153964;;
+    --browndark:  #153964;
 }
 
 .product-details-content {
@@ -10,7 +10,7 @@
 .product-details-content .details-heading {
     font-size: 35px;
     font-weight: 800;
-    color:var(--brown);
+    color: #153964;
 }
 
 .product-details-content .detail-description {
@@ -56,7 +56,7 @@
 }
 
 .add-to-cart {
-    background-color: #5d4037;
+    background-color:  #153964;
     padding: 10px 20px;
     border-radius: 5px;
     /* border: none; */
@@ -72,10 +72,10 @@
     width: 100%;
     font-size: 18px;      
     font-weight: 600;
-    background-color: #5d4037;
+    background-color: #153964;
 }
 .buy-now {
-    background-color: #5d4037;
+    background-color:  #153964;
     width: 100%;
     padding: 10px 20px;
     border-radius: 5px;
@@ -100,7 +100,7 @@
     justify-content: center;
     gap: 20px;
     align-items: center;
-    background-color: #fff2ec;
+    background-color:  #e3eefc;;
     padding: 10px;
 }
 
@@ -122,7 +122,7 @@
 
 .calling-main .icn {
     font-size: 35px;
-    color: #5d4037;
+    color:  #153964;
 }
 
 .call-line {
@@ -137,6 +137,59 @@
     border: 1px solid #eee;
    
   }
+  .CategoriesBtn{
+    padding:10px ;
+    border:none;
+    color:white;
+    
+    background-color: #153964;
+  }
+
+  .detailTitle{
+    font-size: 15px;
+    color: #153964;
+  }
+
+    .AddBtn{
+    padding:10px ;
+    border:none;
+    color:white;
+    background-color: #153964;
+    border-radius:0px 10px 10px 0px;
+  }
+.CategoriesBtnHover{
+        padding:10px ;
+    border:none;
+    border-radius: 10px;
+    color:white;
+    background-color: gray;
+}
+
+  .SizeBtn{
+    padding:10px ;
+    border:none;
+    color:white;
+    border-radius: 10px;
+    background-color: #153964;
+  }
+
+  .SizeBtnHover{
+        padding:10px ;
+    border:none;
+    border-radius: 10px;
+    color:white;
+    background-color: gray;
+}
+
+.ThicknesSection{
+    display:flex;
+    flex-wrap: wrap;
+    gap:10px;
+}
+
+.ThicknessSection{
+padding:20px 0px;
+}
 
   @media (max-width:768px){
     .cal-contact-section h2{
@@ -149,7 +202,7 @@
     }
     .calling-main .icn {
         font-size: 23px;
-        color: #5d4037;
+        color:  #153964;
     }
     .textOr{
         display: none;

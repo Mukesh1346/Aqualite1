@@ -18,6 +18,7 @@ import { axiosInstance } from "@/app/utils/axiosInstance";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, AddToCartToServer } from "@/app/redux/slice/cartSlice";
 import { extractIdFromSlug, generateSlug } from "@/app/utils/generate-slug";
+import PopUpForm from '@/app/Components/PopUpFrom/PopUpForm'
 
 // import image1 from "../../../Components/assets/about2.png"
 // import image2 from "../../../Components/assets/banner1.jpg"
@@ -32,6 +33,8 @@ const ImageCarousel = ({ product }) => {
   const thumbSlider = useRef(null);
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
+
+
 
   useEffect(() => {
     setNav1(mainSlider.current);
@@ -134,6 +137,34 @@ const Page = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const router = useRouter();
+    const [showCustomPopup, setShowCustomPopup] = useState(false);
+
+  const categories = ["Single", "Double", "Queen", "King", "Custom"];
+  const units = ["Inch", "Cm", "Ft"];
+
+  const sizeOptions = {
+    Inch: ["72x36", "75x48", "78x60", "84x72", "Custom"],
+    Cm: ["183x91", "190x122", "198x152", "213x183", "Custom"],
+    Ft: ["6x3", "6.25x4", "6.5x5", "7x6", "Custom"],
+  };
+
+  const thicknessOptions = [
+    "4 inch",
+    "6 inch",
+    "8 inch",
+    "10 inch",
+    "12 inch",
+    "14 inch",
+    "16 inch",
+    "18 inch",
+    "20 inch",
+  ];
+
+  const [selectedCategory, setSelectedCategory] = useState("Single");
+  const [selectedUnit, setSelectedUnit] = useState("Inch");
+  const [selectedThickness, setSelectedThickness] = useState("4 inch");
+  const [selectedSize, setSelectedSize] = useState(sizeOptions[0]);
+
   const fetchProductDetails = async () => {
     const productId = extractIdFromSlug(id);
     try {
@@ -293,7 +324,7 @@ const Page = () => {
             <div className="col-md-6">
               {product && (
                 <div className="product-details-content">
-                  <h2 className="details-heading Producttitle">
+                  <h2 className="details-heading Producttitle">  
                     {" "}
                     {product?.productName}
                   </h2>
@@ -341,6 +372,118 @@ const Page = () => {
                          {product?.stock === 0 ? "Out of Stock" : product?.stock}
                        </li> */}
                     </ul>
+
+                    <div className="d-flex gap-2">
+                      {categories.map((item, index) => (
+                        <button
+                          key={index}
+                         onClick={() => {
+  setSelectedCategory(item);
+  if (item === "Custom") setShowCustomPopup(true);
+}}
+
+                          className={`${
+                            selectedCategory === item
+                              ? " CategoriesBtn  rounded "
+                              : "CategoriesBtnHover"
+                          }`}
+                        >
+                          {item}
+                        </button>
+                      ))}
+                    </div>
+                  <PopUpForm
+  open={showCustomPopup}
+  onClose={() => setShowCustomPopup(false)}
+/>
+
+
+                    <div className="ThicknessSection">
+                      <h3 className="detailTitle">Thinckness Available</h3>
+                      <div className="ThicknesSection">
+                        {thicknessOptions.map((item) => (
+                          <label
+                            key={item}
+                            className=" d-flex align-items-center gap-1 "
+                          >
+                            <input
+                              type="radio"
+                              name="thickness"
+                              value={item}
+                              checked={selectedThickness === item}
+                              onChange={() => setSelectedThickness(item)}
+                            />
+                            {item}
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+  <h3 className="mb-2 fw-semibold">Select Size</h3>
+
+  {/* UNIT BUTTONS (Bootstrap) */}
+  <div className="d-flex gap-2 mb-3" role="group">
+    {units.map((u) => (
+      <button
+        key={u}
+        onClick={() => {
+          setSelectedUnit(u);
+          setSelectedSize(sizeOptions[0]);
+        }}
+        className={` ${
+          selectedUnit === u ? "SizeBtn" : "SizeBtnHover"
+        }`}
+      >
+        {u.toUpperCase()}
+      </button>
+    ))}
+  </div>
+
+  {/* SIZE OPTIONS (Bootstrap Radio Buttons Grid) */}
+  <div className="row">
+    {sizeOptions[selectedUnit].map((sz) => (
+      <div className="col-2 mb-2" key={sz}>
+        <label className="form-check-label d-flex align-items-center gap-2">
+          <input
+            type="radio"
+            className="form-check-input"
+            name="sizes"
+            value={sz}
+            checked={selectedSize === sz}
+            onChange={() => setSelectedSize(sz)}
+          />
+          {sz}
+        </label>
+      </div>
+    ))}
+  </div>
+</div>
+
+    <div>
+      { selectedSize === "Custom" && (
+       <div className="custom-size-inputs mt-3">
+  <h3 className="mb-2 fw-semibold">
+    Enter Custom Size (in {selectedUnit})
+  </h3>
+
+  <div className="input-group w-75">
+    <input
+      type="text"
+      className="form-control "
+      placeholder={`Enter size in ${selectedUnit}`}
+    />
+    <button className="AddBtn" type="button">
+      Add
+    </button>
+  </div>
+</div>
+
+      )
+
+      }
+      </div>
+
                     <div className="product-details-cart-button">
                       {" "}
                       <button className=" cartbtn " onClick={handleAddToCart}>

@@ -287,55 +287,67 @@ const Page = () => {
             {products?.length === 0 && <NoItem name="Products" />}
             {products?.map((item, index) => {
               return (
-                <div className="col-md-3 col-6" key={index}>
-                  <div
-                    className="product-card"
-                    style={{ position: "relative" }}
-                  >
-                    <Link
-                      href={`/Pages/products/${generateSlug(item?.productName, item?._id)}`}
-                      className="product-link"
-                    >
-                      <Image
-                        className="product-image"
-                        src={item?.images[0] || "/images/placeholder.png"}
-                        alt="product-image"
-                        width={300}
-                        height={300}
-                      />
-                      <div className="product-details">
-                        <h3>{item.productName}</h3>
-                        <div className="product-price-section">
-                          <p className="final-price">₹{item?.finalPrice}</p>
-                          <p className="price">
-                            <del>₹{item?.price}</del>
-                          </p>
-                          <p className="discount">{item?.discount}% OFF</p>
-                        </div>
-                      </div>
-                    </Link>
-                    {/* Wishlist Button */}
-                    <button
-                      className="wishlist-btn"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleWishlist(item?._id, item);
-                      }}
-                      aria-label="Add to Wishlist"
-                    >
-                      {wishlist?.products?.some(
-                        (product) => product._id === item._id
-                      ) ? (
-                        <FaHeart
-                          className="wishlist-icon"
-                          style={{ color: "#ffd632" }}
-                        />
-                      ) : (
-                        <FaRegHeart className="wishlist-icon" />
-                      )}
-                    </button>
-                  </div>
-                </div>
+               <div className="col-md-3 col-6" key={index}>
+  <div className="product-card-beautiful">
+
+    {/* Discount / Best Seller Tag */}
+    {item.discount >= 40 && (
+      <span className="ribbon-tag">Best Seller</span>
+    )}
+
+    {/* Wishlist Button */}
+    <button
+      className="wishlist-btn-beautiful"
+      onClick={(e) => {
+        e.stopPropagation();
+        handleWishlist(item?._id, item);
+      }}
+    >
+      {wishlist?.products?.some((p) => p._id === item._id) ? (
+        <FaHeart className="wishlist-icon-active" />
+      ) : (
+        <FaRegHeart className="wishlist-icon" />
+      )}
+    </button>
+
+    <Link
+      href={`/Pages/products/${generateSlug(item?.productName, item?._id)}`}
+      className="product-link-beautiful"
+    >
+      {/* IMAGE */}
+      <div className="product-img-area">
+        <Image
+          src={item?.images[0] || "/images/placeholder.png"}
+          alt={item.productName}
+          width={300}
+          height={300}
+          className="product-img"
+        />
+      </div>
+
+      {/* CONTENT */}
+      <div className="product-info">
+        <h3 className="product-title">{item.productName}</h3>
+
+        {/* Fake Rating – looks premium */}
+        <div className="rating-row">
+          ⭐⭐⭐⭐⭐ <span className="rating-number">(4.8)</span>
+        </div>
+
+        {/* Price */}
+        <div className="price-box">
+          <span className="final-price">₹{item.finalPrice}</span>
+          <span className="old-price"><del>₹{item.price}</del></span>
+          <span className="discount-tag">{item.discount}% OFF</span>
+        </div>
+
+        {/* CTA Button */}
+        <button className="view-btn">View Details</button>
+      </div>
+    </Link>
+  </div>
+</div>
+
               );
             })}
           </div>

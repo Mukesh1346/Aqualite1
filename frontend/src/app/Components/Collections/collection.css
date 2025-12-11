@@ -66,7 +66,7 @@
   bottom: 0;
   width: 100%;
   /* background: rgba(110, 74, 30, 0.8); */
-  background-color: #153964cb;
+  background-color: #153964;
   color: white;
   padding: 1rem;
   margin: 0;
@@ -89,6 +89,7 @@
 /* Mobile: 2 items per row */
 @media (max-width: 768px) {
   .collection-card {
+        height: 230px;
     flex: 0 0 calc(50% - 1rem);
     max-width: calc(50% - 1rem);
   }
@@ -100,6 +101,8 @@
   .section-header h2 {
     font-size: 2rem;
   }
+
+
 }
 
 /* Small mobile: 1 item per row */

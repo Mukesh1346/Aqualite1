@@ -37,7 +37,7 @@ const CategoryNav = () => {
     <section className="category-nav-section">
       <div className="container">
         <div className="row justify-content-center">
-            <div className='HeadingSection text-center '>
+            <div className='HeadingSection text-center'>
                 <h2 className='toptrandheading'>Top Picks For You </h2>
                 <p className='fw-3'>Impressive Collection for Your Dream Home</p>
 

@@ -57,14 +57,14 @@
 
 .product-list-header h2 {
   font-size: 3.5rem;
-  color: #5b3a15;
+  color: #153964;
   margin-bottom: 1rem;
 }
 
 @media only screen and (max-width:768px) {
   .product-list-header h2 {
     font-size: 1.5rem;
-    color: #5b3a15;
+    color: #153964;
     margin-bottom: 0rem;
 }
   .filter-second {

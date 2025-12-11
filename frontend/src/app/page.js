@@ -31,7 +31,7 @@ export default function Home() {
       <Carousel/>
       <Reviews/>
       <AnimatedCard/>
-      <TestimonialSlider/>
+      {/* <TestimonialSlider/> */}
       <FAQ />
 
     </>

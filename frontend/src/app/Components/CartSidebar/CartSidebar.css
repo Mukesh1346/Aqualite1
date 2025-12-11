@@ -110,10 +110,18 @@
 }
 
 .cart-footer .btn-success:hover {
-  background-color: #704112 ;
-  border-color: #5b3917 ;
+  background-color: #153964;
+  border-color: #153964 ;
 }
 
+
+.CartButton{
+ background-color: #153964 ;
+  color:white;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 10px;
+}
 
 
 

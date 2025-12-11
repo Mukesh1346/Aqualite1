@@ -1,9 +1,9 @@
 'use client'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
-import Banner3 from '@/app/Components/assets/banner1.jpg'
-import Banner1 from '@/app/Components/assets/banner2.jpg'
-import Banner2 from '@/app/Components/assets/banner3.webp'
+import Banner3 from '@/app/Components/assets/bannerslide.jpg'
+import Banner1 from '@/app/Components/assets/bannerslide2.webp'
+import Banner2 from '@/app/Components/assets/bannerslide3.jpg'
 import './carousel.css'
 
 const images = [Banner1, Banner2, Banner3]
