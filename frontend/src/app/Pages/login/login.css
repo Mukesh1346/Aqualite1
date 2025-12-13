@@ -328,7 +328,7 @@
   .login-btn{
     width: 100%;
     color: white;
-    background-color: #5b3917;
+    background-color: #153964;
     padding: 10px 20px;
     border: none;
     font-size: 18px;
@@ -336,7 +336,7 @@
   }
   
   .login-form{
-    border: 20px solid #5b3917;
+    border: 20px solid #153964;
     padding: 20px;
     height: 100%;
   }
@@ -349,7 +349,7 @@
   }
   
   .login-form-text a{
-    color: #5b3917;
+    color: #153964;
     font-weight: bold;
     text-decoration: none;
   }

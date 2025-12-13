@@ -181,7 +181,7 @@ export default function Checkout() {
             contact: user?.phone || "",
           },
           theme: {
-            color: "#5b3917",
+            color: "#153964",
           },
         };
 

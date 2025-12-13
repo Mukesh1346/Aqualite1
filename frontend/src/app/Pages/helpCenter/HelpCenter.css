@@ -5,7 +5,7 @@
   }
   
   .help-hero {
-    background: linear-gradient(to right, #b08d57, #e2c49c);
+    background: linear-gradient(to right,#336bb0, #5578a4);
     padding: 80px 20px;
     text-align: center;
     color: white;
@@ -47,7 +47,7 @@
   .help-card h3 {
     font-size: 1.2rem;
     margin-bottom: 10px;
-    color: #b08d57;
+    color: #153964;
   }
   
   .help-card p {

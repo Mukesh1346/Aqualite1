@@ -22,7 +22,7 @@
 }
 
 .main-login {
-    background: var(--bg-head);
+    background:rgb(211, 234, 254);
     min-height: 100dvh;
     display: grid;
     place-items: center;
@@ -30,7 +30,7 @@
 
 .login-container {
     background-color: var(--bg-head);
-    border: 1px solid var(--color-blue-light);
+    border: 1px solid #153964;
     border-radius: 8px;
     padding: 20px;
     max-width: 400px;
@@ -78,7 +78,7 @@
 }
 
 .login-button:hover {
-    background-color: var(--color-blue-light);
+    background-color: #102136;
 }
 
 .forgot-password {

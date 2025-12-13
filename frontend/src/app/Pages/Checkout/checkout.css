@@ -1,5 +1,5 @@
 :root {
-    --brown: #5b3917;
+    --brown: #153964;
   }
   
   .checkoutsec {
@@ -8,10 +8,10 @@
   }
   
   .checkouttitle {
-    color: var(--brown);
+    color: #153964;
     font-size: 3rem;
     font-weight: 600;
-    border-bottom: solid 3px var(--brown);
+    border-bottom: solid 3px #153964;
     margin-bottom: 1.5rem;
   }
   
@@ -32,13 +32,13 @@
   }
   
   .tabletheme {
-    background-color: #5b3917 !important;
+    background-color: #153964 !important;
   }
   
   .tabletheme th {       
-    background-color: #5b3917 !important;
+    background-color: #153964 !important;
     color: #fff !important;
-    border-color: #5b3917 !important;
+    border-color: #153964 !important;
   }
   
   .table-responsive {
@@ -46,7 +46,7 @@
   }
 
   .btn-brown {
-    background-color: #5b3917 !important;
+    background-color: #153964 !important;
     color: white !important;
     border: none !important;
   }
@@ -64,7 +64,7 @@
   }
   
   .checkout-total-table tr.table-total-row {
-    background-color: #5b3917 !important;
+    background-color: #153964 !important;
     color: #fff;
   }
   

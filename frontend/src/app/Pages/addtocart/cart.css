@@ -50,7 +50,7 @@
   
   .place-order-btn {
     width: 100%;
-    background-color: #5b3917!important;
+    background-color:#153964!important;
     border: none;
     color: #fff;
     font-weight: bold;
@@ -61,12 +61,12 @@
   }
   
   .place-order-btn:hover {
-    background-color: #5b3917!important;
+    background-color: #153964!important;
     
   }
  
   .themeColor{
-    color: #5b3917;
+    color: #153964;
   }
     
 

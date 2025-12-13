@@ -3,7 +3,7 @@
   padding: 40px 20px;
   font-size: 0.875rem;
   /* color: #333; */
-  /* color:#5b3917 */
+  /* color:#153964 */
   font-family: Arial, Helvetica, sans-serif;
   width: 100%;
   overflow: hidden;
@@ -74,7 +74,7 @@
 
 .list li a:hover,
 .innerListGrid > li a:hover {
-  color: #5b3917;
+  color: #153964;
   transform: translateX(4px);
 }
 
