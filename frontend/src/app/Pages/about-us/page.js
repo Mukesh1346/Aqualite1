@@ -32,7 +32,7 @@ const page = () => {
                                 <h1>
                                     Premium Mattresses Engineered for Superior Comfort, Durability & Healthy Sleep.
                                 </h1>
-                                <h3>Crafted by Morph Industries – Designed to Transform Your Sleep Experience</h3>
+                                <h3>Crafted by Morph Industries  Designed to Transform Your Sleep Experience</h3>
                             </div>
                         </div>
                         <div className='col-md-6'>
@@ -95,7 +95,7 @@ const page = () => {
                                     At Morph Industries, we believe everyone deserves a healthier and more restful sleep. Our team works tirelessly to provide innovative sleep solutions backed by advanced technology and premium materials.
                                 </p>
                                 <p>
-                                    Whether you're setting up a home, hotel, or commercial space, we’re here to deliver mattresses that promise durability, comfort, and long-term reliability.
+                                    Whether you're setting up a home, hotel, or commercial space, we are here to deliver mattresses that promise durability, comfort, and long-term reliability.
                                 </p>
                             </div>
                         </div>
