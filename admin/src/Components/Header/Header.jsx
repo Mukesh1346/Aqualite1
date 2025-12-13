@@ -59,7 +59,7 @@ const Header = () => {
       <div className="top-head">
         <div className="right">
           <Link className='text-white text-decoration-none' to="/">
-            <h2>Manmohan Furniture Admin Panel</h2>
+            <h2> Aqualite Admin Panel</h2>
           </Link>
           <div className="bar" onClick={handletoggleBtn}>
             <i className="fa-solid fa-bars"></i>

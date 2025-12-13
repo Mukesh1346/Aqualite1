@@ -22,7 +22,7 @@ const Page = () => {
       <div className="container">
         <div className="section-header text-center">
           <h2 className="toptrandheading m-0">Collections</h2>
-          <p className="subtitle">Explore our premium furniture collections</p>
+          <p className="subtitle">Explore our premium Aqualite Mattres collections</p>
         </div>
 
         <div className="collection-grid">

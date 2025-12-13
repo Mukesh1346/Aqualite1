@@ -5,7 +5,7 @@
   }
 
   .hero-section {
-    background: linear-gradient(to right, #b08d57, #e2c49c);
+    background: linear-gradient(to right, #1f3e64, #1f3e64);
     color: white;
     padding: 80px 20px;
     text-align: center;
@@ -48,7 +48,7 @@
     position: absolute;
     left: 0;
     top: 0;
-    color: #b08d57;
+    color: #1f3e64;
     font-weight: bold;
   }
   
@@ -85,7 +85,7 @@
   
   .franchise-form input:focus,
   .franchise-form textarea:focus {
-    border-color: #b08d57;
+    border-color:#507cb3;
     outline: none;
     background-color: #fff;
   }
@@ -93,7 +93,7 @@
   .franchise-submit-btn {
     display: block;
     width: 100%;
-    background-color: #b08d57;
+    background-color:#355882;
     color: white;
     padding: 14px;
     border: none;
@@ -105,7 +105,7 @@
   }
   
   .franchise-submit-btn:hover {
-    background-color: #a17945;
+    background-color: #1f3e64;
   }
   
   /* Responsive */

@@ -8,7 +8,7 @@ const TermsPage = () => {
         <>
 
             <Head>
-                <title>Terms and Conditions | Manmohan Furniture</title>
+                <title>Terms and Conditions | Aqualite Mattress</title>
             </Head>
             <nav aria-label="breadcrumb" className="pretty-breadcrumb">
                 <div className="container">
@@ -28,29 +28,29 @@ const TermsPage = () => {
                 <h1 className="title">Terms and Conditions</h1>
                 <hr />
                 <p className="intro">
-                    Manmohan Furniture, the creator of these terms and conditions, governs your use of our website, products, and services. By accessing or using our website, you agree to comply with these terms. If you do not agree with these Terms and Conditions, please do not use our website.
+                Aqualite Mattress, the creator of these terms and conditions, governs your use of our website, products, and services. By accessing or using our website, you agree to comply with these terms. If you do not agree with these Terms and Conditions, please do not use our website.
                 </p>
 
                 {[
                     {
                         heading: "Introduction",
                         content:
-                            "When you purchase furniture from Manmohan Furniture, you are agreeing to the terms and conditions that outline the rules and regulations of the transaction. These terms and conditions typically include information about payment methods, delivery options, return policies, and warranties."
+                            "When you purchase Aqualite Mattress from Aqualite Mattress, you are agreeing to the terms and conditions that outline the rules and regulations of the transaction. These terms and conditions typically include information about payment methods, delivery options, return policies, and warranties."
                     },
                     {
                         heading: "Intellectual Property Rights",
                         content:
-                            "The content, trademarks, logos, and other intellectual property on this website are owned by Manmohan Furniture or its licensors. You may not use, reproduce, distribute, modify, or create derivative works of any content from this website without our prior written consent."
+                            "The content, trademarks, logos, and other intellectual property on this website are owned by Aqualite Mattress or its licensors. You may not use, reproduce, distribute, modify, or create derivative works of any content from this website without our prior written consent."
                     },
                     {
                         heading: "Return or Exchange Policies",
                         content:
-                            "There is no product return or exchange policy in Manmohan Furniture. Make sure to check the return policy before making your purchase so that you are aware of the conditions."
+                            "There is no product return or exchange policy in Aqualite Mattress Make sure to check the return policy before making your purchase so that you are aware of the conditions."
                     },
                     {
                         heading: "Payment Methods",
                         content:
-                            "Manmohan Furniture offers a variety of payment methods to make your shopping experience convenient and hassle-free. You can pay using credit cards, debit cards, cash on delivery, or online gateways."
+                            "Aqualite Mattress offers a variety of payment methods to make your shopping experience convenient and hassle-free. You can pay using credit cards, debit cards, cash on delivery, or online gateways."
                     },
                     {
                         heading: "Warranties",

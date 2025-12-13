@@ -14,6 +14,8 @@ import CoustomerService from "./Components/CoustomerService/CoustomerService";
 import Features from "./Components/Features/Features";
 import MattressFeatures from "./Components/MattressFeatures/MattressFeatures";
 import Reviews from "./Components/Reviews/Reviews";
+import CertificationModal from "./Components/Certifications/Certification";
+
 
 
 export default function Home() {
@@ -28,6 +30,7 @@ export default function Home() {
       <Collection/>
       <MattressFeatures/>
       <CoustomerService/>
+   
       <Carousel/>
       <Reviews/>
       <AnimatedCard/>

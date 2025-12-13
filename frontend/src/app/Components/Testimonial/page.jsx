@@ -24,7 +24,7 @@ const testimonials = [
     name: "Mukesh Singh",
     role: "Tanakpur, Uttrakhand",
     image: "/testimonial4.jpg",
-    message: "Finding stylish furniture at a good price was tough until I discovered this site. My bedroom looks like a Pinterest board now!",
+    message: "Finding stylish Aqualite Mattres at a good price was tough until I discovered this site. My bedroom looks like a Pinterest board now!",
   },
   {
     name: "Nitin Gupta",

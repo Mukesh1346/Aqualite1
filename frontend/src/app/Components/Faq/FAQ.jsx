@@ -3,19 +3,19 @@ import styles from "./faq.css";
 
 const faqData = [
   {
-    question: "What types of furniture do you offer?",
+    question: "What types of Aqualite Mattres do you offer?",
     answer:
-      "We offer a wide range of furniture including sofas, beds, dining tables, chairs, wardrobes, and more for homes and offices.",
+      "We offer a wide range of Aqualite Mattres including sofas, beds, dining tables, chairs, wardrobes, and more for homes and offices.",
   },
   {
-    question: "Do you offer custom furniture designs?",
+    question: "Do you offer custom Aqualite Mattres designs?",
     answer:
-      "Yes, we provide custom furniture options based on your requirements. You can contact our team to discuss your ideas.",
+      "Yes, we provide custom Aqualite Mattres options based on your requirements. You can contact our team to discuss your ideas.",
   },
   {
     question: "How long does delivery take?",
     answer:
-      "Delivery usually takes 5-10 business days depending on your location and the type of furniture ordered.",
+      "Delivery usually takes 5-10 business days depending on your location and the type of Aqualite Mattres ordered.",
   },
   {
     question: "What is your return policy?",
@@ -25,7 +25,7 @@ const faqData = [
   {
     question: "Do you offer installation services?",
     answer:
-      "Yes, we provide free installation services for selected furniture items. Our delivery team will handle the setup.",
+      "Yes, we provide free installation services for selected Aqualite Mattres items. Our delivery team will handle the setup.",
   },
 ];
 

@@ -111,7 +111,7 @@ export default CategoryNav;
 //   { name: 'Coffee Tables', image: pic1, link: '/coffee-tables' },
 //   { name: 'Study Tables', image: pic1, link: '/study-tables' },
 //   { name: 'Home Decor', image: pic1, link: '/home-decor' },
-//   { name: 'Home Furnishing', image:pic1, link: '/home-furnishing' },
+//   { name: 'Home Aqualite Mattres', image:pic1, link: '/home-furnishing' },
 //   { name: 'Lamps & Lightings', image: pic1, link: '/lamps-lightings' },
 //   { name: 'Sale', image:pic1, link: '/sale' },
 // ];
@@ -119,7 +119,7 @@ export default CategoryNav;
 // const FurnitureSection = ({ categories }) => {
 //   return (
 //     <div className="container py-5">
-//       <h2 className="mb-4 text-center">Explore Our Furniture Categories</h2>
+//       <h2 className="mb-4 text-center">Explore Our Aqualite Mattres Categories</h2>
 //       <div className="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-4">
 //         {categories.map((category) => (
 //           <div key={category.name} className="col">

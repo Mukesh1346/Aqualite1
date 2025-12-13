@@ -2,6 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import './coustomerservice.css'
 import pic1 from '@/app/Components/assets/CoustomerService.avif'
+import Certification from '@/app/Components/Certifications/Certification'
 
 export default function CoustomerService() {
   return (
@@ -26,6 +27,8 @@ export default function CoustomerService() {
                <span className='bg-secondary spanFeature p-1'>#1 Durability</span>
             </div>
 
+  
+      <Certification/>
             </div>
         </div>
 

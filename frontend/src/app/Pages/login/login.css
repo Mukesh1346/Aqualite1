@@ -177,6 +177,14 @@
   font-size: 0.9rem;
 }
 
+.LogInTitle{
+  color:#153964 !important;
+}
+.LogInSubTitle{
+  color:#355882 !important;
+
+}
+
 .help-text a {
   color: #8d6e63;
   text-decoration: none;

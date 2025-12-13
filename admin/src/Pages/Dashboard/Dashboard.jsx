@@ -97,8 +97,8 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">
-        <h1>Welcome to Manmohan Furniture  Admin Panel</h1>
-        <p>Manage your Manmohan Furniture  store data from here!</p>
+        <h1>Welcome to Aqualite Admin Panel</h1>
+        <p>Manage your Aqualite store data from here!</p>
       </div>
 
       <div className="dashboard-cards">

@@ -37,10 +37,10 @@ const sentSignUpMail = async (email, otp) => {
       from: process.env.EMAILUSER,
       email: process.env.EMAILUSER,
       to: email,
-      subject: "Your OTP for Verification - Manmohan Furnitures",
+      subject: "Your OTP for Verification - Aqualite Mattress",
       html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
-            <h2 style="color: #4e342e; text-align: center;">Manmohan Furnitures</h2>
+            <h2 style="color: #4e342e; text-align: center;">Aqualite Mattre</h2>
             <p style="font-size: 16px;">Dear User,</p>
             <p style="font-size: 16px;">Your One-Time Password (OTP) for verifying your account is:</p>
             <div style="text-align: center; margin: 20px 0;">
@@ -49,7 +49,7 @@ const sentSignUpMail = async (email, otp) => {
               </span>
             </div>
             <p style="font-size: 14px; color: #555;">This OTP is valid for 10 minutes. Do not share it with anyone.</p>
-            <p style="font-size: 14px; margin-top: 30px;">Best regards,<br><strong>Manmohan Furnitures Team</strong></p>
+            <p style="font-size: 14px; margin-top: 30px;">Best regards,<br><strong>Aqualite Mattres Team</strong></p>
           </div>
         `,
     };
@@ -150,7 +150,7 @@ const sentResetPasswordMail = async (email, myToken, id) => {
         <p style="color: red;"><strong>Do not share this email or link with anyone.</strong> If you didn’t request a password reset, please ignore this email or contact support.</p>
       </div>
       <div class="footer">
-        &copy; ${new Date().getFullYear()} Manmohan Furnitures.. All rights reserved.
+        &copy; ${new Date().getFullYear()} Aqualite Mattres.. All rights reserved.
       </div>
     </div>
   </body>

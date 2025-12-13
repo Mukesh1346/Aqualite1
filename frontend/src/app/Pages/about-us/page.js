@@ -30,9 +30,9 @@ const page = () => {
                         <div className='col-md-6'>
                             <div className='aboutUsText'>
                                 <h1>
-                                    We offer high-quality, stylish furniture that adds comfort and elegance to your home—crafted to last and impress every day.
+                                    Premium Mattresses Engineered for Superior Comfort, Durability & Healthy Sleep.
                                 </h1>
-                                <h3>Stylish, Durable Furniture Designed to Elevate Your Home</h3>
+                                <h3>Crafted by Morph Industries – Designed to Transform Your Sleep Experience</h3>
                             </div>
                         </div>
                         <div className='col-md-6'>
@@ -41,28 +41,46 @@ const page = () => {
                             </div>
                         </div>
                     </div>
+
                     <div className='aboutUsContent'>
-                        <h2>About Manmohan Furniture</h2>
-                        <p>Manmohan Furniture is a best furniture showroom in Delhi offers the best home furniture for  living room decoration . This furniture business is passionate to provide a high quality, stylish, and affordable best furniture to our customers in Gurgaon, Delhi, India.</p>
-                        <p>We believe that each one of us deserves to have a home or office that we love, and we are here to help you create that special space.</p>
-                        <p>We offer a wide variety of furniture including almirah, sofas, chairs, tables, beds, couches, dressing tables, center tables and more. We also carry a variety of home decor items, such as curtains and showpieces. We assure to have something for everyone, and we are confident that you will definitely find the perfect pieces to complete your home/office.</p>
+                        <h2>About Morph Industries</h2>
                         <p>
-                            Our furniture is made with the highest quality materials and process. We work with the best artisans to create our masterpieces. We are committed to providing our customers with furniture that will last for years to come with lifetime warranty.
+                            Morph Industries is a trusted mattress manufacturing company based in Haryana, delivering high-quality, comfortable, and durable mattresses across India. With years of expertise in sleep technology, we are committed to providing products that enhance your sleep quality and overall well-being.
+                        </p>
+                        <p>
+                            Our mattresses are crafted using advanced materials, precision engineering, and strict quality control—ensuring long-lasting performance and exceptional comfort.
+                        </p>
+                        <p>
+                            From luxury memory foam to orthopedic support mattresses, we offer a wide range of sleep solutions for homes, hotels, hospitals, and commercial spaces.
+                        </p>
+                        <p>
+                            Every Morph mattress is designed to deliver the perfect balance of support, comfort, and breathability so you wake up refreshed every day.
                         </p>
                     </div>
+
                     <div className='whyUs'>
                         <h2>Why Choose Us</h2>
-                        <p>There are many reasons to choose us for your furniture needs. Here are just a few, not limited to:</p>
+                        <p>Here’s what makes Morph Industries a trusted name in the mattress industry:</p>
                         <ul className='list-unstyled'>
-                            <li> <span className='about-arrow-icon'> <IoArrowRedoCircleSharp /> </span> Biggest home furniture showcase to display products of more than 500 ready items. It is a perfect place to find the best home furniture product for your living room or wedding occassion in Delhi.
+                            <li> 
+                                <span className='about-arrow-icon'> <IoArrowRedoCircleSharp /> </span> 
+                                100% in-house manufacturing with strict quality checks for consistent, reliable products.
                             </li>
-                            <li> <span className='about-arrow-icon'> <IoArrowRedoCircleSharp /> </span> We have our own 100% manufacturing units to ensure our furniture is made with the highest quality materials and construction.
+                            <li> 
+                                <span className='about-arrow-icon'> <IoArrowRedoCircleSharp /> </span> 
+                                Wide range of mattresses including orthopedic, memory foam, dual-comfort, spring, and premium luxury mattresses.
                             </li>
-                            <li> <span className='about-arrow-icon'> <IoArrowRedoCircleSharp /> </span> We offer competitive best prices on all of our furniture items.
+                            <li> 
+                                <span className='about-arrow-icon'> <IoArrowRedoCircleSharp /> </span> 
+                                Competitive factory-direct pricing without compromising on quality.
                             </li>
-                            <li> <span className='about-arrow-icon'> <IoArrowRedoCircleSharp /> </span> We have a knowledgeable and friendly staff that is here to help you find the perfect pieces place.
+                            <li> 
+                                <span className='about-arrow-icon'> <IoArrowRedoCircleSharp /> </span> 
+                                Custom sizes available for home, hotels, hostels, PGs, and institutions.
                             </li>
-                            <li> <span className='about-arrow-icon'> <IoArrowRedoCircleSharp /> </span> We offer delivery and assembly services at your doorstep, so you can relax and let us take care of everything.
+                            <li> 
+                                <span className='about-arrow-icon'> <IoArrowRedoCircleSharp /> </span> 
+                                Fast delivery and doorstep service for a smooth and hassle-free experience.
                             </li>
                         </ul>
                     </div>
@@ -71,11 +89,13 @@ const page = () => {
                         <div className='col-md-6'>
                             <div className='aboutUsText'>
                                 <h1>
-                                    Your Perfect Furniture Solution:
+                                    Your Trusted Mattress Partner
                                 </h1>
-                                <p>We invite you to visit our best home furniture showroom today. You will experience yourself that why we are the perfect choice for your best home furniture needs. We look forward to helping you create the home/office of your dreams!</p>
                                 <p>
-                                    Our knowledgeable, professional and friendly staff is here to help you find the perfect pieces for your home/office. We also offer delivery and assembly services at your place, so you can relax and let us take care of everything else.
+                                    At Morph Industries, we believe everyone deserves a healthier and more restful sleep. Our team works tirelessly to provide innovative sleep solutions backed by advanced technology and premium materials.
+                                </p>
+                                <p>
+                                    Whether you're setting up a home, hotel, or commercial space, we’re here to deliver mattresses that promise durability, comfort, and long-term reliability.
                                 </p>
                             </div>
                         </div>
@@ -88,28 +108,28 @@ const page = () => {
 
                     <div>
                         <h2>
-                            High Quality Furniture Showroom Near Me
+                            Premium Mattress Manufacturer Near You
                         </h2>
                         <p>
-                            Manmohan Furniture is your go-to destination for best home furniture that exudes luxury and elegance. Our showroom boasts a wide selection of classic furniture, modern furniture and contemporary furniture. This is the best home furniture showrom in delhi that elevate the aesthetic of any room in your home.
+                            Based in Sampla, Rohtak (Haryana), Morph Industries manufactures a wide range of premium mattresses that suit all comfort preferences and budgets. Our products include spring mattresses, dual-comfort mattresses, memory foam mattresses, PU foam mattresses, bonded foam, and orthopedic mattresses.
                         </p>
                         <p>
-                            We also sell solid wood furniture in our online marketplace, including reception cabinets, dining tables, shoe racks, mattresses, and storage cabinets. You may explore several sofa designs side by side, evaluate prices and finishes, and find unusual modular furniture pieces that might not be offered nearby.
+                            We supply across Delhi NCR, Haryana, Punjab, Rajasthan, UP, and pan India—ensuring quality sleep solutions delivered quickly and reliably.
                         </p>
                         <p>
-                            Product Features:
+                            Product Highlights:
                         </p>
                         <ul className='list-unstyled'>
-                            <li> <span className='about-arrow-icon'> <IoArrowRedoCircleSharp /> </span> Best home furniture showroom: We take pride in offering only the best quality furniture made from premium materials that are built to last.</li>
-                            <li> <span className='about-arrow-icon'> <IoArrowRedoCircleSharp /> </span> Classic furniture showroom: If you prefer timeless pieces with a touch of elegance, our showroom has a curated collection of classic furniture designs that never go out of style.</li>
-                            <li> <span className='about-arrow-icon'> <IoArrowRedoCircleSharp /> </span> High-quality furniture showroom: Our commitment to excellence and craftsmanship is evident in every piece of furniture we offer, ensuring that you receive only the highest quality products.</li>
-                            <li> <span className='about-arrow-icon'> <IoArrowRedoCircleSharp /> </span> Latest furniture showroom: Stay ahead of the trends with our range of modern and contemporary furniture that feature sleek designs and innovative styles to suit any taste.</li>
+                            <li> <span className='about-arrow-icon'> <IoArrowRedoCircleSharp /> </span> High-density foam for long-lasting durability</li>
+                            <li> <span className='about-arrow-icon'> <IoArrowRedoCircleSharp /> </span> Orthopedic support options for back care</li>
+                            <li> <span className='about-arrow-icon'> <IoArrowRedoCircleSharp /> </span> Breathable fabrics for cooler sleep</li>
+                            <li> <span className='about-arrow-icon'> <IoArrowRedoCircleSharp /> </span> Luxury comfort layers for premium feel</li>
                         </ul>
                         <p>
-                            Visit Manmohan Furniture today and discover the perfect furniture pieces to transform your living space into a stylish oasis of comfort and sophistication.
+                            Choose Morph Industries for reliable, comfortable, and expertly designed mattresses that elevate the way you sleep.
                         </p>
                         <p>
-                            Home Furniture shop in Delhi | Best Home Furniture shop in Dwarka | Home Furniture shop in Gurgaon | Furniture showroom in Delhi | Furniture showroom in Dwarka | Furniture showroom in Gurgaon | Furniture shop in Delhi | Furniture shop in Dwarka | Furniture shop in Gurgaon | Luxury Furniture shop in Delhi | Luxury Furniture shop in Dwarka | Furniture Store in Delhi | Furniture Online in Gurgaon | Furniture Shop in Rohtak | Luxury Furniture in Bahadurgarh | Modern Furniture in Faridabad | Office Furniture in Delhi NCR | Double Bed in Ghaziabad | Luxury Bed in Mahipalpur | Low Floor Bed in Bizwasan | Sofa Set in Delhi | Best Quality Furniture Showroom in Dwarka | Modern Furniture Showroom in Nangloi | LivIng Room Furniture in Najafgarh | Luxury Furniture shop in Gurgaon |
+                            Mattress Manufacturer in Haryana | Mattress Supplier in Delhi NCR | Orthopedic Mattress Manufacturer | Memory Foam Mattress Supplier | Spring Mattress Factory | Custom Size Mattresses | Mattress Manufacturer in Rohtak | Mattress Factory in Sampla
                         </p>
                     </div>
 

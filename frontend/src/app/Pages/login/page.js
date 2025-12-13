@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 import Image from "next/image";
 import Link from "next/link";
 import "./login.css";
@@ -62,8 +62,8 @@ useEffect(()=>{
           {/* Left Section: Image and Headline */}
           <div className="login-furniture-left">
             <div className="text-center logintext">
-              <h1> Log In</h1>
-              <p>Welcome Back! Log In to Continue </p>
+              <h1 className="LogInTitle"> Log In</h1>
+              <p className="LogInSubTitle">Welcome Back! Log In to Continue </p>
             </div>
             <div className="furniture-overlay-text ">
               <Image

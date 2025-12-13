@@ -4,6 +4,7 @@ import "./Franchise.css";
 import Link from "next/link";
 import { axiosInstance } from "@/app/utils/axiosInstance";
 import toast from "react-hot-toast";
+
 const Franchise = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -72,63 +73,58 @@ const Franchise = () => {
 
       <div className="franchise-page">
         <div className="hero-section">
-          <h1>Become a Manmohan Furniture Franchise</h1>
-          <p>Join one of the fastest growing furniture brands in India</p>
+          <h1>Become an Aqualite Mattress Franchise Partner</h1>
+          <p>Join India’s Fast-Growing Premium Mattress & Sleep Solutions Brand</p>
         </div>
+
         <div className="container">
           <div className="franchise-content-row">
             <div className="row">
               <div className="col-md-6">
                 <div className="franchise-content">
-                  <h2>Why Partner With Us?</h2>
+                  <h2>Why Partner With Aqualite Mattress?</h2>
                   <ul className="franchise-benefits">
                     <li>
-                      Established and trusted brand with over X years of
-                      experience in the furniture industry
+                      Trusted sleep solutions brand delivering comfort for over a decade.
                     </li>
                     <li>
-                      Wide range of premium, modern and traditional furniture
-                      products
+                      Wide range of premium mattresses – Orthopedic, Memory Foam, Dual Comfort & more.
                     </li>
                     <li>
-                      End-to-end support: store setup, marketing, branding,
-                      training, and logistics
+                      Complete franchise support – store setup, branding, marketing & staff training.
                     </li>
                     <li>
-                      Strong presence in the Indian market with growing customer
-                      base
-                    </li>
-                    <li>Attractive ROI & high profit margins on every sale</li>
-                    <li>
-                      Exclusive franchise territory with zero competition from
-                      other partners
+                      High repeat customer rate due to long-lasting product quality.
                     </li>
                     <li>
-                      Latest technology integration for inventory & order
-                      management
+                      Excellent ROI with strong profit margins in the booming sleep industry.
                     </li>
                     <li>
-                      Flexible showroom designs tailored to your location and
-                      customer segment
+                      Exclusive franchise territory ensures zero internal competition.
                     </li>
                     <li>
-                      Dedicated support team to assist in daily operations and
-                      growth strategies
+                      Advanced manufacturing processes for consistent product quality.
                     </li>
                     <li>
-                      Consistent marketing campaigns – both digital & offline to
-                      boost visibility
+                      Logistics support with fast & reliable delivery across India.
                     </li>
                     <li>
-                      Backed by customer satisfaction and repeat business across
-                      regions
+                      National & digital marketing campaigns to boost your store footfall.
+                    </li>
+                    <li>
+                      Strong brand reputation backed by thousands of happy customers.
+                    </li>
+                    <li>
+                      Growing demand for premium sleep solutions in every tier of India.
                     </li>
                   </ul>
                 </div>
               </div>
+
               <div className="col-md-6">
                 <form className="franchise-form" onSubmit={handleSubmit}>
                   <h2>Apply for Franchise</h2>
+
                   <div className="form-group">
                     <input
                       type="text"
@@ -139,6 +135,7 @@ const Franchise = () => {
                       required
                     />
                   </div>
+
                   <div className="form-group">
                     <input
                       type="email"
@@ -149,6 +146,7 @@ const Franchise = () => {
                       required
                     />
                   </div>
+
                   <div className="form-group">
                     <input
                       type="tel"
@@ -159,6 +157,7 @@ const Franchise = () => {
                       required
                     />
                   </div>
+
                   <div className="form-group">
                     <input
                       type="text"
@@ -169,25 +168,28 @@ const Franchise = () => {
                       required
                     />
                   </div>
+
                   <div className="form-group">
                     <input
                       type="text"
                       name="budget"
-                      placeholder="Investment Budget (e.g. ₹10-20 Lakhs)"
+                      placeholder="Investment Budget (e.g. ₹10–20 Lakhs)"
                       value={formData.budget}
                       onChange={handleChange}
                       required
                     />
                   </div>
+
                   <div className="form-group">
                     <textarea
                       name="message"
-                      placeholder="Tell us more about yourself or your business plan"
+                      placeholder="Tell us more about your business interest"
                       value={formData.message}
                       onChange={handleChange}
                       rows="5"
                     />
                   </div>
+
                   <button type="submit" className="franchise-submit-btn">
                     Submit Application
                   </button>

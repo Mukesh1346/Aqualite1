@@ -37,19 +37,19 @@ import { generateSlug } from "@/app/utils/generate-slug";
 import { useRouter } from "next/navigation";
 
 const dropdownContentprev = {
-  Furniture: {
-    title: "Furniture Collection ",
+  Mattress: {
+    title: "Aqualite Mattress Collection ",
     columns: [
       ["Living Room", "Bedroom", "Dining Room", "Home Office", "Outdoor"],
       [
-        "Kids Furniture",
-        "Accent Furniture",
+        "Kids Mattress",
+        "Accent Mattress",
         "Entertainment",
-        "Bar Furniture",
+        "Bar Mattress",
         "Commercial",
       ],
       ["Bookcases", "Cabinets", "Shelving", "Room Dividers", "Wall Units"],
-      ["Furniture Sets", "Recliners", "Rocking Chairs", "Futons", "Ottomans"],
+      [" Mattress Sets", "Recliners", "Rocking Chairs", "Futons", "Ottomans"],
       ["Beds", "Dressers", "Nightstands", "Wardrobes", "Armoires"],
     ],
   },
@@ -304,6 +304,15 @@ const Navbar = () => {
                 src="/logo.png"
                 alt="Mattress"
                 width={150}
+                height={35}
+              />
+            </Link>
+            
+              <Link href="/">
+              <Image
+              src="/logo2.png"
+                alt="Aqualite Mattres"
+                width={130}
                 height={40}
               />
             </Link>
@@ -495,11 +504,12 @@ const Navbar = () => {
             <Link href="/">
               <Image
               src="/logo.png"
-                alt="Manmohan Furnitures"
+                alt="Aqualite Mattres"
                 width={120}
                 height={30}
               />
             </Link>
+
           </div>
 
           {/* Profile Icon Right */}

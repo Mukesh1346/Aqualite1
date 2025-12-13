@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from "react";
 import "./footer.css";
 import Image from "next/image";
-// import AOS from 'aos';
-// import 'aos/dist/aos.css';
 import {
   FaCcVisa,
   FaCcMastercard,
@@ -27,26 +25,25 @@ import toast from "react-hot-toast";
 import { axiosInstance } from "@/app/utils/axiosInstance";
 
 const Footer = () => {
-  // useEffect(() => {
-  //   AOS.init({ duration: 600 });
-  // }, []);
   const [email, setEmail] = useState("");
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.category);
   const { products, featuredProducts } = useSelector((state) => state.product);
-  
-  const handleContactUs=async(e)=>{
+
+  const handleContactUs = async (e) => {
     e.preventDefault();
-    
-   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if(!emailRegex.test(email)){
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
       toast.error("Enter a valid email address");
-      return
+      return;
     }
+
     try {
-      const response = await axiosInstance.post("/api/email-inquery/email-inqueries", {
-        email,
-      });
+      const response = await axiosInstance.post(
+        "/api/email-inquery/email-inqueries",
+        { email }
+      );
       if (response.status === 201) {
         setEmail("");
         toast.success("Message sent successfully!");
@@ -55,76 +52,64 @@ const Footer = () => {
       console.log("Error sending message:", error);
       toast.error(error?.response?.data?.message || "Failed to send message.");
     }
-  }
+  };
 
   useEffect(() => {
     dispatch(fetchCategories());
     dispatch(fetchFeaturedProducts());
   }, [dispatch]);
+
   return (
     <footer className="footer text-dark">
       <div className="container Footersection">
-        {/* <div className="logoSection">
-          <Image
-            src="/logo.webp"
-            alt="Manmohan Furnitures Logo"
-            width={100}
-            height={60}
-          />
-          <p className="logoText">
-            Our website offers a wide range of products, including premium dupes
-            that are not sold through authorized channels. However, we ensure
-            top-notch quality at competitive prices, providing our customers
-            with the best value.
-          </p>
-        </div> */}
-<div className="logoSection">
-  <Image
-    src="/logo.png"
-    alt="Manmohan Furnitures Logo"
-    width={140}
-    height={40}
-  />
-  <p className="logoText" style={{ marginRight: "20px" }}>
-    Our website offers a wide range of products, including premium dupes
-    that are not sold through authorized channels. However, we ensure
-    top-notch quality at competitive prices, providing our customers
-    with the best value.
-  </p>
 
-  {/* Contact Us Section */}
-  <div className="contactForm">
-    <input
-      type="email"
-      onChange={(e) => setEmail(e.target.value)}
-      placeholder="Enter Email or phone"
-      className="contactInput"
-    />
-    <button className="contactButton" onClick={handleContactUs}>Contact Us</button>
-  </div>
-</div>
+        <div className="logoSection">
+          <Image
+            src="/logo.png"
+            alt="Aqualite Mattress Logo"
+            className="footerlogo"
+            width={140}
+            height={40}
+          />
+
+          <p className="logoText">
+            Aqualite Mattress offers premium-quality mattresses designed for
+            perfect comfort, healthy sleep, and long-lasting durability.
+            Experience luxury sleep solutions crafted with advanced technology.
+          </p>
+
+          <div className="contactForm">
+            <input
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              className="contactInput"
+            />
+            <button className="contactButton" onClick={handleContactUs}>
+              Submit
+            </button>
+          </div>
+        </div>
 
         <hr />
 
         <div className="row">
+          {/* Quick Links */}
           <div className="col-md-3 col-6 mb-4">
             <div className="QuickLinkSec">
               <h3 className="heading">Quick Links</h3>
               <ul className="list">
                 <li>
-                  <Link href="/Pages/products">Shop</Link>
+                  <Link href="/Pages/products">Shop Mattresses</Link>
                 </li>
                 <li>
-                  <Link href="Components/faqs">FAQs</Link>
-                </li>
-                {/* <li><Link href="/order-status">Check Order Status</Link></li> */}
-                <li>
-                  <Link href="https://wa.me/your-number">
-                    Join WhatsApp Community
-                  </Link>
+                  <Link href="/Components/faqs">FAQs</Link>
                 </li>
                 <li>
-                  <Link href="https://instagram.com/yourpage" target="_blank">
+                  <Link href="/Pages/contact-us">Customer Support</Link>
+                </li>
+                <li>
+                  <Link href="https://instagram.com/" target="_blank">
                     Follow us on Instagram
                   </Link>
                 </li>
@@ -132,10 +117,10 @@ const Footer = () => {
             </div>
           </div>
 
+          {/* Categories */}
           <div className="col-md-3 col-6 mb-4">
             <div className="BestSellersSec">
-              <h3 className="heading">Our Categories</h3>
-
+              <h3 className="heading">Mattress Categories</h3>
               <ul className="list innerListGrid">
                 {categories?.slice(0, 5)?.map((category, index) => (
                   <li key={index}>
@@ -153,9 +138,10 @@ const Footer = () => {
             </div>
           </div>
 
+          {/* Best Sellers */}
           <div className="col-md-3 col-6 mb-4">
             <div className="CategoriesSec">
-              <h3 className="heading">Our Best Sellers </h3>
+              <h3 className="heading">Best Sellers</h3>
               <ul className="list innerListGrid">
                 {featuredProducts?.slice(0, 5)?.map((product) => (
                   <li key={product?._id}>
@@ -173,6 +159,7 @@ const Footer = () => {
             </div>
           </div>
 
+          {/* More Information */}
           <div className="col-md-3 col-6 mb-4">
             <div className="InformationSec">
               <h3 className="heading">More Information</h3>
@@ -187,10 +174,12 @@ const Footer = () => {
                   <Link href="/shipping-policy">Shipping Policy</Link>
                 </li>
                 <li>
-                  <Link href="/Pages/term-conditions">Terms & Conditions</Link>
+                  <Link href="/Pages/term-conditions">
+                    Terms & Conditions
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/returns">Returns & Exchanges</Link>
+                  <Link href="/returns">Return & Refund Policy</Link>
                 </li>
                 <li>
                   <Link href="/Pages/contact-us">Contact Us</Link>
@@ -200,39 +189,23 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Footer Bottom */}
         <div className="footerBottomSec">
           <div className="bottomFlexWrapper d-flex flex-wrap justify-content-between">
-            {/* Payment Methods */}
+
+            {/* Payment Options */}
             <div className="paymentsec">
               <h4>We Accept</h4>
               <div className="d-flex gap-3 align-items-center">
-                <Link href="#" aria-label="Visa" style={{ color: "brown" }}>
-                  <FaCcVisa className="fs-1 text-success" />
-                </Link>
-                <Link
-                  href="#"
-                  aria-label="MasterCard"
-                  style={{ color: "darkblue" }}
-                >
-                  <FaCcMastercard className="fs-1 text-warning" />
-                </Link>
-                <Link href="#" aria-label="Amex" style={{ color: "green" }}>
-                  <FaCcAmex className="fs-1 text-primary" />
-                </Link>
-                <Link href="#" aria-label="Wallet" style={{ color: "black" }}>
-                  <FaWallet className="fs-1" />
-                </Link>
-                <Link
-                  href="#"
-                  aria-label="Net Banking"
-                  style={{ color: "#5b3917" }}
-                >
-                  <FaLaptop className="fs-1 text-info" />
-                </Link>
+                <FaCcVisa className="fs-1 text-primary" />
+                <FaCcMastercard className="fs-1 text-warning" />
+                <FaCcAmex className="fs-1 text-info" />
+                <FaWallet className="fs-1" />
+                <FaLaptop className="fs-1 text-secondary" />
               </div>
             </div>
 
-            {/* Social Media Links */}
+            {/* Social Media */}
             <div className="SocialLinks d-grid">
               <h4
                 style={{
@@ -241,49 +214,32 @@ const Footer = () => {
                   marginBottom: "0",
                 }}
               >
-                Like what you see? Follow us here
+                Follow us for updates
               </h4>
               <div className="socialMediaSec justify-content-center d-flex gap-3">
-                <Link
-                  href="https://www.instagram.com/manmohanfurnitures/#"
-                  target="_blank"
-                  aria-label="Instagram"
-                  className="instagramicon"
-                >
+                <Link href="#" target="_blank" className="instagramicon">
                   <FaInstagramSquare className="fs-1 text-danger" />
                 </Link>
-                <Link
-                  href="https://www.facebook.com/ManmohanFurnitureshomedecor"
-                  target="_blank"
-                  aria-label="Facebook"
-                  className="facebookicon"
-                >
-                  <FaFacebookSquare className="fs-1 text-primary " />
+                <Link href="#" target="_blank" className="facebookicon">
+                  <FaFacebookSquare className="fs-1 text-primary" />
                 </Link>
-                <Link
-                  href="https://x.com/i/flow/login?redirect_after_login=%2FManmohanMMF"
-                  target="_blank"
-                  aria-label="Twitter"
-                  className="twittericon"
-                >
-                  <FaTwitterSquare className="fs-1" />
+                <Link href="#" target="_blank" className="twittericon">
+                  <FaTwitterSquare className="fs-1 text-info" />
                 </Link>
-                <a
-                  href="https://in.pinterest.com/manmohanfurnitures/"
-                  target="_blank"
-                  aria-label="Pinterest"
-                >
-                  <FaPinterest className="fs-1 text-danger " />
-                </a>
+                <Link href="#" target="_blank">
+                  <FaPinterest className="fs-1 text-danger" />
+                </Link>
               </div>
             </div>
+
           </div>
         </div>
+
       </div>
 
       <div className="text-center mt-4">
         <small>
-          © {new Date().getFullYear()} Manmohan Furnitures. All rights reserved.
+          © {new Date().getFullYear()} Aqualite Mattress. All rights reserved.
         </small>
       </div>
     </footer>
