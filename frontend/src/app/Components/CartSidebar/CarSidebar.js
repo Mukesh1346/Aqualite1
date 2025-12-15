@@ -26,6 +26,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
 
   // Fetch or sync cart
   useEffect(() => {
+    CloudCog
     if (!loading) {
       if (user?.email) {
         dispatch(fetchCartItems());
@@ -143,7 +144,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                           <p className="fw-semibold mb-2">{product?.productName || item?.name}</p>
                           <div className="d-flex align-items-center gap-3 mb-2">
                             <button className="btn btn-outline-secondary btn-sm" onClick={() => handleDecrease(product, item.quantity)}>-</button>
-                            <span>{item.quantity}</span>
+                            <span>{item.quantity?item.quantity:""}</span>
                             <button className="btn btn-outline-secondary btn-sm" onClick={() => handleIncrease(product, item.quantity, product?.stock)}>+</button>
                           </div>
                           <strong>₹{product?.finalPrice * item.quantity || item?.finalPrice * item.quantity}</strong>

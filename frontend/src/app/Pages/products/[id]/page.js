@@ -134,6 +134,7 @@ const Page = () => {
   const [loading, setLoading] = useState(false);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [faqData, setFaqData] = useState([]);
+  
   const { id } = useParams();
   const dispatch = useDispatch();
   const router = useRouter();
@@ -164,6 +165,7 @@ const Page = () => {
   const [selectedUnit, setSelectedUnit] = useState("Inch");
   const [selectedThickness, setSelectedThickness] = useState("4 inch");
   const [selectedSize, setSelectedSize] = useState(sizeOptions[0]);
+  
 
   const fetchProductDetails = async () => {
     const productId = extractIdFromSlug(id);
@@ -363,6 +365,14 @@ const Page = () => {
                       <li>
                         <strong>Brand :</strong> {product?.brand}
                       </li>
+
+                      <li>
+                      <strong>Firmness :</strong> {product?.firmnessLevel} Soft / Medium / Firm
+                      </li>
+                      <li>
+                        <strong>Comfort Level :</strong> {product?.comfortLevel} low/Medium/High
+                         </li>
+
                       {/* <li>
                          <strong>SKU :</strong>
                          {product?.sku}
@@ -399,7 +409,7 @@ const Page = () => {
 
 
                     <div className="ThicknessSection">
-                      <h3 className="detailTitle mb-3">Thinckness Available</h3>
+                      <h3 className="detailTitle mb-3">Thinckness Available </h3>
                       <div className="ThicknesSection">
                         {thicknessOptions.map((item) => (
                           <label

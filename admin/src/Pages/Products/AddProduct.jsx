@@ -339,6 +339,17 @@ const AddProduct = () => {
               required
             />
           </div>
+          <div className="col-md-3">
+            <label className="form-label">Thinckness Available*</label>
+            <input
+              type="text"
+              name="Thinckness"
+              className="form-control"
+              value={formData.dimensionsCm}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
           {/* <div className="col-md-3">
             <label className="form-label">Select Type</label>

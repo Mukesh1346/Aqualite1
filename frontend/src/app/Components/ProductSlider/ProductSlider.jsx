@@ -122,7 +122,7 @@ export default function ProductSlider() {
                 <span className="offer">{item.offer}</span>
               </div>
 
-             <Link href="/Pages/products"> <button className="shop-btn">Shop Now</button></Link>
+             <a href="/Pages/products"> <button className="shop-btn">Shop Now</button></a>
             </div>
           </div>
         ))}

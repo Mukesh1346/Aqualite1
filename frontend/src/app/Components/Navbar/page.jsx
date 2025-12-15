@@ -280,23 +280,25 @@ const Navbar = () => {
             className="search-bar flex-grow-1 d-none d-md-block"
             style={{ maxWidth: "30%" }}
           >
-            <div className="input-group">
-              <input
-                type="text"
-                className="form-control"
-                placeholder=" Search for products and related keywords…"
-                onKeyDown={handleSearchKeyDown}
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-              />
-              <span
-                className="input-group-text bg-white"
-                onClick={handleSearchChange}
-                style={{ cursor: "pointer" }}
-              >
-                <FaSearch className="helpline" />
-              </span>
-            </div>
+           <div className="input-group">
+  <input
+    suppressHydrationWarning
+    type="text"
+    className="form-control"
+    placeholder=" Search for products and related keywords…"
+    onKeyDown={handleSearchKeyDown}
+    value={searchValue}
+    onChange={(e) => setSearchValue(e.target.value)}
+  />
+  <span
+    className="input-group-text bg-white"
+    onClick={handleSearchChange}
+    style={{ cursor: "pointer" }}
+  >
+    <FaSearch className="helpline" />
+  </span>
+</div>
+
           </div>
           <div className="logo text-center mx-auto">
             <Link href="/">
