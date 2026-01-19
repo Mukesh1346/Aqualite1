@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import morgan from "morgan";
 import dotenv from "dotenv";
 dotenv.config();
 import cookieParser from "cookie-parser";
@@ -7,9 +8,10 @@ import { connectDB } from "./db/index.js";
 
 const app = express();
 app.use(express.json());
+app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 
-const allowedOrigins = ["http://localhost:3000", "http://localhost:3001","https://admin.manmohanfurniture.com","https://www.manmohanfurniture.com","https://manmohanfurniture.com"];
+const allowedOrigins = ["http://localhost:3000", "http://localhost:3001", "https://admin.manmohanfurniture.com", "https://www.manmohanfurniture.com", "https://manmohanfurniture.com"];
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -39,6 +41,8 @@ import becomeFranchiseRouter from "./routes/BecomeFranchise.route.js";
 import cartRouter from "./routes/cart.route.js";
 import orderRouter from "./routes/order.route.js";
 import emailInqueryRouter from "./routes/emailInquery.route.js";
+import sizeRouter from "./routes/size.route.js";
+import productInquaryRouter from "./routes/productInquary.route.js";
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/category", categoryRouter);
@@ -53,6 +57,8 @@ app.use("/api/v1/wishlist", wishlistRouter);
 app.use("/api/v1/cart", cartRouter);
 app.use("/api/v1/order", orderRouter);
 app.use("/api/email-inquery", emailInqueryRouter);
+app.use("/api/v1/size", sizeRouter);
+app.use("/api/v1/product-inquery", productInquaryRouter);
 
 app.get("/", (req, res) => {
   res.send("Server is running");

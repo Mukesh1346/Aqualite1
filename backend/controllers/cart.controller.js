@@ -3,86 +3,213 @@ import Cart from "../models/cart.model.js";
 import Product from "../models/product.model.js";
 import User from "../models/user.model.js";
 
+export const safeNumber = (value, fallback = 0) => {
+  const num = Number(value);
+  return Number.isFinite(num) ? num : fallback;
+};
+
+// const AddToCart = async (req, res) => {
+//   try {
+//     const { _id: userId } = req?.user;
+//     const { items } = req.body || {};
+//     console.log("D:::==>", items)
+//     if (!userId || !items || items.length === 0) {
+//       return res.status(400).json({ message: "userId and items are required" });
+//     }
+
+//     const user = await User.findById(userId);
+//     if (!user) {
+//       return res.status(400).json({ message: "User not found" });
+//     }
+
+//     const cart =
+//       (await Cart.findOne({ userId })) ||
+//       new Cart({ userId, items: [], totalAmount: 0 });
+
+//     let totalAmount = cart.totalAmount;
+
+//     for (let i = 0; i < items.length; i++) {
+//       const { productId, quantity, sizeName, thickness, mattressDimension, mattressPrice, mattressFinalPrice } = items[i];
+//       if (
+//         !productId || !quantity || quantity <= 0 ||
+//         !mongoose.Types.ObjectId.isValid(productId) ||
+//         !thickness || !mattressDimension || !mattressPrice
+//       ) {
+//         return res.status(400).json({ message: "Valid productId and quantity are required" });
+//       }
+
+//       const product = await Product.findById(productId);
+//       if (!product) {
+//         return res.status(400).json({ message: "Product not found" });
+//       }
+
+//       const existingItemIndex = cart.items.findIndex(
+//         (item) => item.productId.toString() === productId
+//       );
+
+//       if (existingItemIndex > -1) {
+//         const existingItem = cart.items[existingItemIndex];
+
+//         const newQuantity = existingItem.quantity + quantity;
+
+//         if (newQuantity > product.stock) {
+//           return res.status(400).json({
+//             message: `Only ${product.stock} units available for ${product.productName}`,
+//           });
+//         }
+
+//         cart.items[existingItemIndex].quantity = newQuantity;
+//         cart.items[existingItemIndex].sizeName = sizeName;
+//         cart.items[existingItemIndex].thickness = thickness;
+//         cart.items[existingItemIndex].mattressDimension = mattressDimension;
+//         cart.items[existingItemIndex].mattressPrice = mattressPrice;
+//         cart.items[existingItemIndex].mattressFinalPrice = mattressFinalPrice;
+
+//         // totalAmount +=
+//         //   quantity * (product.price * (1 - product.discount / 100));
+//         totalAmount += quantity * (mattressPrice * (1 - product.discount / 100));
+//       } else {
+//         if (quantity > product.stock) {
+//           return res.status(400).json({
+//             message: `Only ${product.stock} units available for ${product.productName}`,
+//           });
+//         }
+
+//         cart.items.push({ productId, quantity, sizeName, thickness, mattressDimension, mattressPrice, mattressFinalPrice });
+//         // totalAmount +=
+//         //   quantity * (product.price * (1 - product.discount / 100));
+//         totalAmount +=
+//           quantity * (mattressPrice * (1 - product.discount / 100));
+//       }
+//     }
+
+//     cart.totalAmount = totalAmount;
+//     console.log("D:::==>", cart)
+//     // const updatedCart = await cart.save();
+
+//     // return res.status(200).json({ message: "Cart updated successfully", updatedCart });
+//   } catch (error) {
+//     console.error("Error in AddToCart:", error);
+//     res.status(500).json({ message: "Internal server error" });
+//   }
+// };
+
 const AddToCart = async (req, res) => {
   try {
-    const { _id: userId } = req?.user;
+    const userId = req?.user?._id;
     const { items } = req.body || {};
 
-    if (!userId || !items || items.length === 0) {
-      return res.status(400).json({ message: "userId and items are required" });
+    if (!userId) {
+      return res.status(401).json({ message: "Unauthorized" });
     }
 
-    const user = await User.findById(userId);
+    if (!Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ message: "Items are required" });
+    }
+
+    const user = await User.findById(userId).lean();
     if (!user) {
-      return res.status(400).json({ message: "User not found" });
+      return res.status(404).json({ message: "User not found" });
     }
 
-    const cart =
-      (await Cart.findOne({ userId })) ||
-      new Cart({ userId, items: [], totalAmount: 0 });
+    let cart = await Cart.findOne({ userId });
+    if (!cart) {
+      cart = new Cart({ userId, items: [], totalAmount: 0 });
+    }
 
-    let totalAmount = cart.totalAmount;
+    for (const item of items) {
+      const {
+        productId,
+        quantity,
+        sizeName,
+        thickness,
+        mattressDimension,
+        mattressPrice,
+        mattressFinalPrice,
+      } = item;
 
-    for (let i = 0; i < items.length; i++) {
-      const { productId, quantity } = items[i];
+      // ✅ Validation
       if (
-        !productId ||
+        !mongoose.Types.ObjectId.isValid(productId) ||
         !quantity ||
         quantity <= 0 ||
-        !mongoose.Types.ObjectId.isValid(productId)
+        !mattressPrice
       ) {
-        return res
-          .status(400)
-          .json({ message: "Valid productId and quantity are required" });
+        return res.status(400).json({ message: "Invalid cart item data" });
       }
 
-      const product = await Product.findById(productId);
+      const product = await Product.findById(productId).lean();
       if (!product) {
-        return res.status(400).json({ message: "Product not found" });
+        return res.status(404).json({ message: "Product not found" });
       }
 
-      const existingItemIndex = cart.items.findIndex(
-        (item) => item.productId.toString() === productId
+      if (quantity > product.stock) {
+        return res.status(400).json({
+          message: `Only ${product.stock} units available for ${product.productName}`,
+        });
+      }
+
+      // ✅ Find exact matching item (product + variant)
+      const existingItem = cart.items.find(
+        (ci) =>
+          ci.productId.toString() === productId &&
+          ci.sizeName === sizeName &&
+          ci.thickness === thickness &&
+          ci.mattressDimension === mattressDimension
       );
 
-      if (existingItemIndex > -1) {
-        const existingItem = cart.items[existingItemIndex];
+      if (existingItem) {
+        const newQty = existingItem.quantity + quantity;
 
-        const newQuantity = existingItem.quantity + quantity;
-
-        if (newQuantity > product.stock) {
+        if (newQty > product.stock) {
           return res.status(400).json({
             message: `Only ${product.stock} units available for ${product.productName}`,
           });
         }
 
-        cart.items[existingItemIndex].quantity = newQuantity;
-        totalAmount +=
-          quantity * (product.price * (1 - product.discount / 100));
+        existingItem.quantity = newQty;
+        existingItem.mattressPrice = mattressPrice;
+        existingItem.mattressFinalPrice =
+          mattressFinalPrice ?? mattressPrice;
       } else {
-        if (quantity > product.stock) {
-          return res.status(400).json({
-            message: `Only ${product.stock} units available for ${product.productName}`,
-          });
-        }
-
-        cart.items.push({ productId, quantity });
-        totalAmount +=
-          quantity * (product.price * (1 - product.discount / 100));
+        cart.items.push({
+          productId,
+          quantity,
+          sizeName,
+          thickness,
+          mattressDimension,
+          mattressPrice,
+          mattressFinalPrice: mattressFinalPrice ?? mattressPrice,
+        });
       }
     }
 
-    cart.totalAmount = totalAmount;
+    // ✅ Recalculate totalAmount (SAFE WAY)
+    cart.totalAmount = cart.items.reduce((sum, item) => {
+      const qty = safeNumber(item.quantity, 0);
+
+      // priority: finalPrice → price → 0
+      const price =
+        safeNumber(item.mattressFinalPrice) ||
+        safeNumber(item.mattressPrice) ||
+        0;
+
+      return sum + qty * price;
+    }, 0);
+
+    console.log("D:::==>", cart)
     const updatedCart = await cart.save();
 
-    return res
-      .status(200)
-      .json({ message: "Cart updated successfully", updatedCart });
+    return res.status(200).json({
+      message: "Item added to cart successfully",
+      cart: updatedCart,
+    });
   } catch (error) {
     console.error("Error in AddToCart:", error);
-    res.status(500).json({ message: "Internal server error" });
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
+
 
 const UpdateCartQuantity = async (req, res) => {
   try {

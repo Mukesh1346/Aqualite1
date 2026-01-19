@@ -9,6 +9,22 @@ export const itemsSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  sizeName: {
+    type: String,
+  },
+  thickness: {
+    type: String,
+  },
+  mattressDimension: {
+    type: String,
+  },
+  mattressPrice: {
+    type: Number,
+  },
+  mattressFinalPrice: {
+    type: Number,
+
+  }
 });
 
 const cartSchema = new mongoose.Schema({
@@ -20,7 +36,9 @@ const cartSchema = new mongoose.Schema({
   totalAmount: {
     type: Number,
     required: true,
-  }
-},{timestamps:true});
+    default: 0
+  },
+
+}, { timestamps: true });
 
 export default mongoose.model("Cart", cartSchema);

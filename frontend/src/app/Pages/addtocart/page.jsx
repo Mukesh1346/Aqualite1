@@ -6,13 +6,8 @@ import pic1 from "@/app/Components/assets/icon6.webp";
 import pic2 from "@/app/Components/assets/icon7.webp";
 import Link from "next/link";
 import {
-  decreaseQuantity,
-  fetchCartItems,
-  increaseQuantity,
-  removeFromCart,
-  safeJSONParse,
-  setCartFromLocalStorage,
-  updateQuantity,
+  decreaseQuantity, fetchCartItems, increaseQuantity,
+  removeFromCart, safeJSONParse, setCartFromLocalStorage, updateQuantity,
 } from "@/app/redux/slice/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { axiosInstance } from "@/app/utils/axiosInstance";
@@ -25,13 +20,13 @@ const Cart = () => {
   useEffect(() => {
     calculateTotals();
   }, [items]);
-
- const { user, loading } = useSelector((state) => state.auth);
+  console.log("XXXX::>=>", items)
+  const { user, loading } = useSelector((state) => state.auth);
   const handleDecrease = async (productId, quantity) => {
     if (quantity === 1) return;
     if (user && user?.email) {
       try {
-        await dispatch(updateQuantity({ productId:productId?._id, action: "decrease" }));
+        await dispatch(updateQuantity({ productId: productId?._id, action: "decrease" }));
         dispatch(fetchCartItems());
       } catch (error) {
         console.error(error);
@@ -54,13 +49,13 @@ const Cart = () => {
       dispatch(increaseQuantity({ productId }));
     }
   };
-  const handleRemove = async(productId) => {
+  const handleRemove = async (productId) => {
     if (user && user?.email) {
       try {
-        const response=  await axiosInstance.post("/api/v1/cart/remove-from-cart", { productId: productId?._id });
-     
+        const response = await axiosInstance.post("/api/v1/cart/remove-from-cart", { productId: productId?._id });
+
         dispatch(removeFromCart({ productId: productId?._id }));
-    
+
       } catch (error) {
         console.log("error", error?.response?.data.message || error.message);
       }
@@ -70,17 +65,17 @@ const Cart = () => {
   };
 
   const calculateTotals = () => {
-   
+
     const mrp = items.reduce(
-      (acc, item) =>{
-       const price = item.price ? item.price : item.productId.price;
-        return acc + price * item.quantity ; 
-      } ,
+      (acc, item) => {
+        const price = item.mattressPrice ? item.mattressPrice : item.productId.price;
+        return acc + price * item.quantity;
+      },
       0
     );
     const total = items.reduce(
       (acc, item) => {
-        const price = item.finalPrice ? item.finalPrice : item.productId.finalPrice;
+        const price = item?.mattressFinalPrice ? item?.mattressFinalPrice : item.productId.finalPrice;
         return acc + price * item.quantity;
       },
       0
@@ -94,18 +89,19 @@ const Cart = () => {
     if (loading) return;
 
     if (user && user?.email) {
- 
+
       dispatch(fetchCartItems());
     } else {
-    if (typeof window !== "undefined") {
-      const cartData = localStorage.getItem("cart");
-      const parsedCart = safeJSONParse(cartData);
-      if (parsedCart && Array.isArray(parsedCart)) {
-        dispatch(setCartFromLocalStorage(parsedCart));
+      if (typeof window !== "undefined") {
+        const cartData = localStorage.getItem("cart");
+        const parsedCart = safeJSONParse(cartData);
+        if (parsedCart && Array.isArray(parsedCart)) {
+          dispatch(setCartFromLocalStorage(parsedCart));
+        }
       }
     }
-    }
   }, [loading]);
+
   return (
     <>
       <nav aria-label="breadcrumb" className="pretty-breadcrumb">
@@ -128,12 +124,12 @@ const Cart = () => {
         <div className="row">
           {/* Left side */}
           <div className="col-lg-8">
-            {items?.map((item,index) => (
+            {items?.map((item, index) => (
               <div key={index} className="cart-item d-flex mb-4 pb-3">
-                <Link
+                {/* <Link
                   href={`/Pages/products/${item?.productId ? item?.productId : item?.productId?._id}`}
                   className="text-decoration-none"
-                >
+                > */}
                 <Image
                   src={item?.image || item?.productId?.images[0] || "jsonholder.img"}
                   alt={item?.name || item?.productId?.productName}
@@ -141,7 +137,7 @@ const Cart = () => {
                   height={140}
                   className="rounded"
                 />
-                </Link>
+                {/* </Link> */}
                 <div className="flex-grow-1 leftTextSec">
                   <h6 className="fw-semibold">{item?.name || item?.productId?.productName}</h6>
                   <p className="text-muted small mb-2">{item?.description}</p>
@@ -171,8 +167,8 @@ const Cart = () => {
                       </div>
                     </div>
                     <div className="price-text">
-                      ₹{item?.finalPrice * item?.quantity  || item?.productId?.finalPrice * item?.quantity}{" "}
-                      <del className="ms-2">₹{item?.price * item?.quantity || item?.productId?.price * item?.quantity}</del>{" "}
+                      ₹{item?.mattressFinalPrice * item?.quantity || item?.productId?.finalPrice * item?.quantity}{" "}
+                      <del className="ms-2">₹{item?.mattressPrice * item?.quantity || item?.productId?.price * item?.quantity}</del>{" "}
                       <span className=" ms-2">
                         {item?.discount || item?.productId?.discount}% OFF
                       </span>

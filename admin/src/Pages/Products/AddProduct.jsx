@@ -22,6 +22,7 @@ const AddProduct = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [categoryList, setCategoryList] = useState([]);
   const [subcategoryList, setSubcategoryList] = useState([]);
+  const [sizeList, setSizeList] = useState([]);
   const [formData, setFormData] = useState({
     productName: "",
     images: [],
@@ -43,6 +44,7 @@ const AddProduct = () => {
     CareMaintenance: "",
     seller: "",
     Warranty: "",
+    size: []
   });
 
   const navigate = useNavigate();
@@ -64,8 +66,25 @@ const AddProduct = () => {
     }
   };
 
+  const fetchSizes = async () => {
+    try {
+      const response = await axiosInstance.get(
+        "/api/v1/size/get-all-sizes"
+      );
+      if (response?.status === 200) {
+        setSizeList(response.data.data);
+      }
+    } catch (error) {
+      toast.error(
+        error.response
+          ? error.response.data.message
+          : "Error fetching Size data"
+      );
+    }
+  }
   useEffect(() => {
     fetchCategory();
+    fetchSizes();
   }, []);
 
   const handleChange = (e) => {
@@ -117,6 +136,8 @@ const AddProduct = () => {
         });
       } else if (key === "productName") {
         payload.append("productName", capitalizeFirstLetter(value));
+      } else if (key === "size") {
+        payload.append("size", JSON.stringify(value));
       } else {
         payload.append(key, value);
       }
@@ -141,7 +162,7 @@ const AddProduct = () => {
       console.error(error);
       toast.error(
         error?.response?.data?.message ||
-          "Failed to add product. Please try again."
+        "Failed to add product. Please try again."
       );
     } finally {
       setIsLoading(false);
@@ -294,13 +315,8 @@ const AddProduct = () => {
           </div>
           <h3
             style={{
-              fontSize: "20px",
-              fontWeight: "600",
-              margin: "30px 0 10px",
-              color: "#333",
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
+              fontSize: "20px", fontWeight: "600", margin: "30px 0 10px",
+              color: "#333", display: "flex", alignItems: "center", gap: "8px",
             }}
           >
             <StraightenIcon style={{ color: "#795548" }} />
@@ -351,21 +367,31 @@ const AddProduct = () => {
             />
           </div>
 
-          {/* <div className="col-md-3">
-            <label className="form-label">Select Type</label>
+          <div className="col-md-6">
+            <label className="form-label">Select Size</label>
             <Autocomplete
               multiple
-              options={typeOptions}
+              options={sizeList}
+              getOptionLabel={(option) => option.name || ""}
 
-              value={typeOptions.filter((opt) => formData.type.includes(opt.name))}
-              onChange={(e, newValue) => setFormData((prev) => ({ ...prev, type: newValue.map((opt) => opt.name), }))
+              /* 🔑 VALUE: filter options by stored IDs */
+              value={sizeList.filter((opt) =>
+                formData.size.includes(opt._id)
+              )}
+
+              /* 🔑 ON CHANGE: store only IDs */
+              onChange={(e, newValue) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  size: newValue.map((item) => item._id),
+                }))
               }
-              getOptionLabel={(option) => option.name}
-              // value={typeOptions.find((opt) => opt.name === formData.type) || null}
-              // onChange={(e, value) => setFormData({ ...formData, type: value?.name || "" })}
-              renderInput={(params) => <TextField {...params} label="Select Type" />}
+
+              renderInput={(params) => (
+                <TextField {...params} label="Select Size" />
+              )}
             />
-          </div> */}
+          </div>
           <h3
             style={{
               fontSize: "20px",

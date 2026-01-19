@@ -5,6 +5,9 @@
 
 .product-details-content {
     padding: 1rem;
+    overflow-y: scroll;
+    height: 80vh;
+    scrollbar-width: none;
 }
 
 .product-details-content .details-heading {

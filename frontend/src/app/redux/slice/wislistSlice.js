@@ -8,7 +8,7 @@ export const addToWishlistToServer = createAsyncThunk(
     try {
       const response = await axiosInstance.post(
         "/api/v1/wishlist/add-to-wishlist",
-        productId
+        {productId}
       );
       return response.data;
     } catch (error) {

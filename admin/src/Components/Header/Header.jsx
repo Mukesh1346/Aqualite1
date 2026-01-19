@@ -12,11 +12,11 @@ const Header = () => {
     setSideToggle(!sidetoggle);
   };
 
-  
-  const handleLogout = async() => {
+
+  const handleLogout = async () => {
     try {
-    const response=  await axiosInstance.get('/api/v1/auth/logout');
-      if(response.status===200){
+      const response = await axiosInstance.get('/api/v1/auth/logout');
+      if (response.status === 200) {
         toast.success('Logout successfully!');
         navigate("/login");
       }
@@ -37,10 +37,13 @@ const Header = () => {
     { to: "/all-products", label: "All Products", icon: "fa-solid fa-cubes" },
     { to: "/all-videos", label: "All Videos", icon: "fa-solid fa-video" },
     { to: "/all-banners", label: "Manage Banners", icon: "fa-solid fa-images" },
- 
+
+    { to: "/all-sizes", label: "Manage Sizes", icon: "fa-solid fa-ruler-combined" },
+
     // { to: "/all-color", label: "Manage Color", icon: "fa-solid fa-heartbeat" },
     { to: "/all-coupon", label: "Manage Coupons", icon: "fa-solid fa-tag" },
     { to: "/all-users", label: "All Users", icon: "fa-solid fa-users" },
+    { to: "/all-product-inquary", label: "All product Inquiries", icon: "fa-solid fa-envelope-open-text" },
     { to: "/all-inquiries", label: "All Contact Inquiries", icon: "fa-solid fa-envelope-open-text" },
     { to: "/all-become-franchise", label: "Franchise Requests", icon: "fa-solid fa-handshake" },
     { to: "/all-email-inquiries", label: "Email Inquiries", icon: "fa-solid fa-envelope" },

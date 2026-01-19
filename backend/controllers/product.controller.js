@@ -23,6 +23,7 @@ const createProduct = async (req, res) => {
       Warranty,
       category,
       isFeatured,
+      size,
     } = req.body || {};
 
     if (
@@ -44,7 +45,8 @@ const createProduct = async (req, res) => {
       !CareMaintenance ||
       !seller ||
       !Warranty ||
-      !category
+      !category ||
+      !size
     ) {
       return res.status(400).json({ message: "All fields are required" });
     }
@@ -61,6 +63,17 @@ const createProduct = async (req, res) => {
     );
     const images = await Promise.all(imageUploadPromises);
 
+    let parsedSize = [];
+
+    if (Array.isArray(req.body.size)) {
+      parsedSize = req.body.size;
+    } else if (typeof req.body.size === "string") {
+      try {
+        parsedSize = JSON.parse(req.body.size);
+      } catch (err) {
+        parsedSize = req.body.size.split(","); // fallback
+      }
+    }
     const newProduct = new Product({
       productName,
       images,
@@ -83,12 +96,12 @@ const createProduct = async (req, res) => {
       seller,
       Warranty,
       category,
+      size: parsedSize
     });
 
     await newProduct.save();
-    return res
-      .status(201)
-      .json({ message: "Product created successfully", data: newProduct });
+    return res.status(201).json({ message: "Product created successfully", data: newProduct });
+
   } catch (error) {
     console.error("create product error", error);
     res
@@ -120,16 +133,29 @@ const updateProduct = async (req, res) => {
       seller,
       Warranty,
       category,
+      size,
     } = req.body || {};
+
     const product = await Product.findById(id);
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
+
+    let parsedSize = [];
+
+    if (Array.isArray(req.body.size)) {
+      parsedSize = req.body.size;
+    } else if (typeof req.body.size === "string") {
+      try {
+        parsedSize = JSON.parse(req.body.size);
+      } catch (err) {
+        parsedSize = req.body.size.split(","); // fallback
+      }
+    }
+
     if (req.files && req.files.length > 0) {
       if (req.files.length > 5) {
-        return res
-          .status(400)
-          .json({ message: "Maximum 5 images are allowed" });
+        return res.status(400).json({ message: "Maximum 5 images are allowed" });
       }
       const imageUploadPromises = req.files.map((file) =>
         uploadOnCloudinary(file.path)
@@ -163,6 +189,7 @@ const updateProduct = async (req, res) => {
     product.seller = seller ?? product.seller;
     product.Warranty = Warranty ?? product.Warranty;
     product.category = category ?? product.category;
+    product.size = parsedSize ?? product.size;
     const updatedProduct = await product.save();
 
     return res
@@ -194,7 +221,7 @@ const getSingleProduct = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const product = await Product.findById(id).populate("category").populate("subCategory");
+    const product = await Product.findById(id).populate("category").populate("subCategory").populate("size");
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
@@ -232,7 +259,7 @@ const deleteProduct = async (req, res) => {
 
 const searchProducts = async (req, res) => {
   try {
-    const { query, category, priceMin, priceMax, discountMin, sortBy,material } =
+    const { query, category, priceMin, priceMax, discountMin, sortBy, material } =
       req.query;
 
     const filter = {};
@@ -244,14 +271,14 @@ const searchProducts = async (req, res) => {
         { productName: regex },
         { description: regex },
         { brand: regex },
-        {weight: regex },
-        {material: regex },
+        { weight: regex },
+        { material: regex },
       ];
     }
     if (category) {
       filter.category = category;
     }
-  
+
     if (material) {
       filter.material = material;
     }

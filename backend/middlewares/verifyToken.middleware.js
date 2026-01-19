@@ -1,13 +1,13 @@
 import jwt from "jsonwebtoken";
 
-export const verifyToken = (req, res, next) => {
+export const verifyToken = async (req, res, next) => {
   try {
-    const token = req.cookies?.token;
-    
+    const token = await req.cookies?.token;
+    console.log("token=>", token);
     if (!token) {
       return res.status(401).json({ message: "Unauthorized you are not logged In" });
     }
-    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    const decoded =await jwt.verify(token, process.env.JWT_SECRET_KEY);
     req.user = decoded;
     next();
   } catch (err) {

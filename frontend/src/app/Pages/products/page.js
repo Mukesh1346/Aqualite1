@@ -10,6 +10,7 @@ import { fetchMaterials, fetchProducts } from "@/app/redux/slice/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "@/app/redux/slice/categorySllice";
 import { useRouter } from "next/navigation";
+import { addToWishlist, addToWishlistToLocal, addToWishlistToServer, getWishlistFromServer } from "@/app/redux/slice/wislistSlice";
 
 const Page = () => {
   // State to track the wishlisted product ID
@@ -23,30 +24,49 @@ const Page = () => {
     { label: "Above ₹30,000", priceMin: 30000, priceMax: Infinity },
   ];
   // Function to toggle wishlist for a specific product
-  const toggleWishlist = (e, productId) => {
-    e.preventDefault(); // Prevent navigation when clicking the heart
-    setWishlistedProductId((prevId) =>
-      prevId === productId ? null : productId
-    ); // Toggle wishlist state
-  };
+
+
+
   const dispatch = useDispatch();
-const router = useRouter();
+  const router = useRouter();
   const categories = useSelector((state) => state.category.categories);
   const materials = useSelector((state) => state.product.materials);
+  const { user } = useSelector((state) => state.auth);
+  const wishlist = useSelector((state) => state.wishlist);
+
   // Fetch products from API
   const { products } = useSelector((state) => state.product);
   const handleSortChange = (e) => {
     const sortValue = e.target.value;
     router.push(`/Pages/products/search?sortBy=${sortValue}`);
   };
+
+  const toggleWishlist = (e, productId) => {
+    console.log("ZZZXXZZZ=>", productId)
+    e.preventDefault(); // Prevent navigation when clicking the heart
+
+    if (user.email) {
+      dispatch(addToWishlistToServer(productId));
+    } else {
+      // dispatch(addToWishlistToLocal(productId));
+    }
+    alert("Product added to wishlist");
+    setWishlistedProductId((prevId) =>
+      prevId === productId ? null : productId
+    ); // Toggle wishlist state
+  };
+
+
   useEffect(() => {
     dispatch(fetchProducts());
+    dispatch(getWishlistFromServer())
+  }, [dispatch, wishlistedProductId]);
+
+  useEffect(() => {
+    if (!categories.length) dispatch(fetchCategories());
+    if (!materials.length) dispatch(fetchMaterials());
   }, [dispatch]);
-  
-   useEffect(() => {
-     if (!categories.length) dispatch(fetchCategories());
-   if (!materials.length) dispatch(fetchMaterials());
-   }, [dispatch]);
+
   return (
     <>
       {/* Product filter section */}
@@ -65,20 +85,20 @@ const router = useRouter();
                     Price
                   </button>
                   <ul className="dropdown-menu">
-                  {
-                    priceRanges?.map((priceRange, index) => {
-                      return (
-                        <li key={index}>
-                          <Link
-                            className="dropdown-item"
-                            href={`/Pages/products/search?priceMin=${priceRange.priceMin}&priceMax=${priceRange.priceMax}`}
-                          >
-                            {priceRange.label}
-                          </Link>
-                        </li>
-                      );
-                    })
-                  }
+                    {
+                      priceRanges?.map((priceRange, index) => {
+                        return (
+                          <li key={index}>
+                            <Link
+                              className="dropdown-item"
+                              href={`/Pages/products/search?priceMin=${priceRange.priceMin}&priceMax=${priceRange.priceMax}`}
+                            >
+                              {priceRange.label}
+                            </Link>
+                          </li>
+                        );
+                      })
+                    }
                   </ul>
                 </div>
                 {/* Category Dropdown */}
@@ -90,18 +110,19 @@ const router = useRouter();
                     Category
                   </button>
                   <ul className="dropdown-menu">
-                  {  categories?.slice(0, 10)?.map((category, index) => {
-                            return (
-                                <li key={index}>
-                                    <Link className="dropdown-item" href={`/Pages/products/search?category=${category?._id}`}>
-                                        {category?.categoryName}
-                                    </Link>
-                                </li>
-                            )
-                        })
+                    {categories?.slice(0, 10)?.map((category, index) => {
+                      return (
+                        <li key={index}>
+                          <Link className="dropdown-item" href={`/Pages/products/search?category=${category?._id}`}>
+                            {category?.categoryName}
+                          </Link>
+                        </li>
+                      )
+                    })
                     }
                   </ul>
                 </div>
+
                 {/* Material Dropdown */}
                 <div className="dropdown">
                   <button
@@ -111,19 +132,20 @@ const router = useRouter();
                     Material
                   </button>
                   <ul className="dropdown-menu">
-                    {  materials?.slice(0, 10)?.map((material, index) => {
-                            return (
-                                <li key={index}>
-                                    <Link className="dropdown-item" href={`/Pages/products/search?material=${material}`}>
-                                        {material}
-                                    </Link>
-                                </li>
-                            )
-                        })
+                    {materials?.slice(0, 10)?.map((material, index) => {
+                      return (
+                        <li key={index}>
+                          <Link className="dropdown-item" href={`/Pages/products/search?material=${material}`}>
+                            {material}
+                          </Link>
+                        </li>
+                      )
+                    })
                     }
-                  
+
                   </ul>
                 </div>
+
                 {/* Size Dropdown */}
                 {/* <div className="dropdown">
                                     <button className="btn btn-light btn-sm dropdown-toggle" data-bs-toggle="dropdown">
@@ -199,6 +221,7 @@ const router = useRouter();
         <div className="container">
           <div className="row">
             {products?.map((item, index) => {
+              // console.log("XX::=>XX=>wishlist==>>", wishlist?.wishlist?.products?.map((id) => id?._id).includes(item?._id));
               return (
                 <div className="col-md-3 col-6" key={index}>
                   <div
@@ -230,10 +253,10 @@ const router = useRouter();
                       {/* Wishlist Button */}
                       <button
                         className="wishlist-btn"
-                        onClick={(e) => toggleWishlist(e, item.id)}
+                        onClick={(e) => toggleWishlist(e, item._id)}
                         aria-label="Add to Wishlist"
                       >
-                        {wishlistedProductId === item.id ? (
+                        {wishlist?.wishlist?.products?.map((id) => id?._id).includes(item?._id) ? (
                           <FaHeart className="wishlist-icon red" />
                         ) : (
                           <FaRegHeart className="wishlist-icon" />

@@ -105,9 +105,10 @@ const CartSidebar = ({ isOpen, onClose }) => {
       item?.productId?.finalPrice ??
       0;
 
-    return acc + price * item.quantity;
+    return acc + price * item?.quantity;
   }, 0);
 
+  console.log("DDD::=>", items)
   return (
     <AnimatePresence>
       {isOpen && (
@@ -156,17 +157,14 @@ const CartSidebar = ({ isOpen, onClose }) => {
                   </Link>
                 </div>
               ) : (
-                items.map((item) => {
-                  const product = item.productId || item;
-                  const price =
-                    product?.finalPrice ??
-                    item?.finalPrice ??
-                    0;
-
+                items.map((item, i) => {
+                  const product = item?.productId || item;
+                  const price = item?.mattressFinalPrice ?? product?.finalPrice ?? item?.finalPrice ?? 0;
+                  // console.log("DDD::=>" , item ,product)
                   return (
                     <div
                       className="cart-item d-flex gap-3 py-3 border-bottom"
-                      key={product?._id}
+                      key={i}
                     >
                       <Link href={`/Pages/products/${product?._id}`}>
                         <Image
@@ -191,20 +189,20 @@ const CartSidebar = ({ isOpen, onClose }) => {
                           <button
                             className="btn btn-outline-secondary btn-sm"
                             onClick={() =>
-                              handleDecrease(product._id, item.quantity)
+                              handleDecrease(product?._id, item?.quantity)
                             }
                           >
                             -
                           </button>
 
-                          <span>{item.quantity}</span>
+                          <span>{item?.quantity}</span>
 
                           <button
                             className="btn btn-outline-secondary btn-sm"
                             onClick={() =>
                               handleIncrease(
-                                product._id,
-                                item.quantity,
+                                product?._id,
+                                item?.quantity,
                                 product?.stock
                               )
                             }
@@ -213,12 +211,12 @@ const CartSidebar = ({ isOpen, onClose }) => {
                           </button>
                         </div>
 
-                        <strong>₹{price * item.quantity}</strong>
+                        <strong>₹{price * item?.quantity}</strong>
                       </div>
 
                       <MdDelete
                         className="text-danger fs-5 cursor-pointer"
-                        onClick={() => handleRemove(product._id)}
+                        onClick={() => handleRemove(product?._id)}
                       />
                     </div>
                   );

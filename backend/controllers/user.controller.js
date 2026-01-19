@@ -24,9 +24,9 @@ const sentSignUpMail = async (email, otp) => {
   try {
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      requireTLS: true,
+      port: 465,  // use 587 for TLS
+      secure: true,  
+      // requireTLS: true,
       auth: {
         user: process.env.EMAILUSER,
         pass: process.env.EMAILPASSWORD,
@@ -65,23 +65,23 @@ const sentSignUpMail = async (email, otp) => {
   }
 };
 const sentResetPasswordMail = async (email, myToken, id) => {
-    try {
-      const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
-        secure: false,
-        requireTLS: true,
-        auth: {
-          user: process.env.EMAILUSER,
-          pass: process.env.EMAILPASSWORD,
-        },
-      });
-  
-      const mailOptions = {
-        from: process.env.EMAILUSER,
-        to: email,
-        subject: "For Reset password",
-        html: `
+  try {
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
+      requireTLS: true,
+      auth: {
+        user: process.env.EMAILUSER,
+        pass: process.env.EMAILPASSWORD,
+      },
+    });
+
+    const mailOptions = {
+      from: process.env.EMAILUSER,
+      to: email,
+      subject: "For Reset password",
+      html: `
       <!DOCTYPE html>
   <html>
   <head>
@@ -143,8 +143,7 @@ const sentResetPasswordMail = async (email, myToken, id) => {
         <h2>Hello,</h2>
         <p>We received a request to reset your password. Click the link below to set a new password:</p>
   
-        <a href="${process.env.BASE_URL}/Pages/reset-password/${id}/${myToken}" >${
-          process.env.BASE_URL
+        <a href="${process.env.BASE_URL}/Pages/reset-password/${id}/${myToken}" >${process.env.BASE_URL
         }/Pages/reset-password/${id}/${myToken}</a>
         <p><strong>Note:</strong> This link will expire after a short time for your security.</p>
         <p style="color: red;"><strong>Do not share this email or link with anyone.</strong> If you didn’t request a password reset, please ignore this email or contact support.</p>
@@ -156,19 +155,19 @@ const sentResetPasswordMail = async (email, myToken, id) => {
   </body>
   </html>
   `,
-      };
-  
-      transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log("Mail has been sent: ", info.response);
-        }
-      });
-    } catch (error) {
-      console.error("Error while sending email: ", error);
-    }
-  };
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Mail has been sent: ", info.response);
+      }
+    });
+  } catch (error) {
+    console.error("Error while sending email: ", error);
+  }
+};
 const SignUpRequest = async (req, res) => {
   try {
     const { email } = req.body || {};
@@ -181,10 +180,10 @@ const SignUpRequest = async (req, res) => {
 
     const otpExpiry = new Date(Date.now() + 10 * 60 * 1000);
     await sentSignUpMail(email, otp);
-   const isExisted = await OTP.find({email})
-   if (isExisted.length > 0) {
-    await OTP.deleteMany({ email }); 
-  }
+    const isExisted = await OTP.find({ email })
+    if (isExisted.length > 0) {
+      await OTP.deleteMany({ email });
+    }
     await OTP.create({ email, otp: hashedOtp, expiresAt: otpExpiry });
 
     return res.status(201).json({ message: "OTP sent successfully" });
@@ -222,13 +221,13 @@ const SignUp = async (req, res) => {
       return res.status(400).json({ message: "OTP not verified" });
     }
 
-    const user = await User.findOne({ email });  
+    const user = await User.findOne({ email });
     if (user) {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    await User.create({ email, name:fullName, phone, password });
-   await isVerifiedUser.deleteOne();
+    await User.create({ email, name: fullName, phone, password });
+    await isVerifiedUser.deleteOne();
     return res.status(201).json({ message: "User created successfully" });
   } catch (error) {
     console.error(error);
@@ -237,113 +236,113 @@ const SignUp = async (req, res) => {
 };
 
 const SignIn = async (req, res) => {
-    try {
-      const { email, password } = req.body || {};
-      if (!email || !password) {
-        return res
-          .status(400)
-          .json({ message: "Email and password are required" });
-      }
-  
-      const isUserExisted = await User.findOne({ email });
-      if (!isUserExisted) {
-        return res.status(400).json({ message: "User not found" });
-      }
-  
-      const IsCorrectPassword = await bcrypt.compare(
-        password,
-        isUserExisted?.password
-      );
-  
-      if (!IsCorrectPassword) {
-        return res
-          .status(400)
-          .json({ message: "Authorized failed ! password is incorrect" });
-      }
-  
-      const token = await isUserExisted.generateJwtToken();
-      res.cookie("token", token, cookieOptions);
-  
-      return res.status(200).json({
-        message: "Sign-in successful",
-        user: {
-          id: isUserExisted._id,
-          fullName: isUserExisted.fullName,
-          email: isUserExisted.email,
-          phone: isUserExisted.phone,
-          role: isUserExisted.role,
-        },
-      });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "Sign-in server error" });
-    }
-  };
-
-  const ForgotPassword = async (req, res) => {
-    try {
-      const { email } = req.body || {};
-      if (!email) {
-        return res.status(400).json({ message: "Email is required" });
-      }
-      const user = await User.findOne({ email });
-      if (!user) {
-        return res.status(400).json({ message: "User not found " });
-      }
-      const token = crypto.randomBytes(32).toString("hex");
-  
-      const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
-  
-      user.resetPasswordToken = hashedToken;
-  
-      user.resetPasswordExpires = Date.now() + 1000 * 60 * 15;
-      await user.save();
-  
-      await sentResetPasswordMail(email, token, user._id);
+  try {
+    const { email, password } = req.body || {};
+    if (!email || !password) {
       return res
-        .status(200)
-        .json({ message: "Reset password link sent successfully" });
-    } catch (error) {
-      console.log("forgot password error", error);
-      res.status(500).json({ message: "forgot password server error" });
+        .status(400)
+        .json({ message: "Email and password are required" });
     }
-  };
 
-  const ResetPassword = async (req, res) => {
-    try {
-      const { id, token } = req.params;
-      const { password } = req.body || {};
-  
-      if (!id || !token || !password) {
-        return res.status(400).json({ message: "All fields are required" });
-      }
-      if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(400).json({ message: "Invalid userId" });
-      }
-      const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
-  
-      const user = await User.findOne({
-        _id: id,
-        resetPasswordToken: hashedToken,
-        resetPasswordExpires: { $gt: Date.now() },
-      });
-  
-      if (!user)
-        return res
-          .status(404)
-          .json({ message: "User not found or Your reset link is expired" });
-  
-      user.resetPasswordToken = undefined;
-      user.resetPasswordExpires = undefined;
-      user.password = password;
-      await user.save();
-  
-      return res.status(200).json({ message: "Password reset successfully" });
-    } catch (error) {
-      console.log("reset password error", error);
-      res.status(500).json({ message: "reset password server error" });
+    const isUserExisted = await User.findOne({ email });
+    if (!isUserExisted) {
+      return res.status(400).json({ message: "User not found" });
     }
-  };
+
+    const IsCorrectPassword = await bcrypt.compare(
+      password,
+      isUserExisted?.password
+    );
+
+    if (!IsCorrectPassword) {
+      return res
+        .status(400)
+        .json({ message: "Authorized failed ! password is incorrect" });
+    }
+
+    const token = await isUserExisted.generateJwtToken();
+    res.cookie("token", token, cookieOptions);
+
+    return res.status(200).json({
+      message: "Sign-in successful",
+      user: {
+        id: isUserExisted._id,
+        fullName: isUserExisted.fullName,
+        email: isUserExisted.email,
+        phone: isUserExisted.phone,
+        role: isUserExisted.role,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Sign-in server error" });
+  }
+};
+
+const ForgotPassword = async (req, res) => {
+  try {
+    const { email } = req.body || {};
+    if (!email) {
+      return res.status(400).json({ message: "Email is required" });
+    }
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: "User not found " });
+    }
+    const token = crypto.randomBytes(32).toString("hex");
+
+    const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
+
+    user.resetPasswordToken = hashedToken;
+
+    user.resetPasswordExpires = Date.now() + 1000 * 60 * 15;
+    await user.save();
+
+    await sentResetPasswordMail(email, token, user._id);
+    return res
+      .status(200)
+      .json({ message: "Reset password link sent successfully" });
+  } catch (error) {
+    console.log("forgot password error", error);
+    res.status(500).json({ message: "forgot password server error" });
+  }
+};
+
+const ResetPassword = async (req, res) => {
+  try {
+    const { id, token } = req.params;
+    const { password } = req.body || {};
+
+    if (!id || !token || !password) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid userId" });
+    }
+    const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
+
+    const user = await User.findOne({
+      _id: id,
+      resetPasswordToken: hashedToken,
+      resetPasswordExpires: { $gt: Date.now() },
+    });
+
+    if (!user)
+      return res
+        .status(404)
+        .json({ message: "User not found or Your reset link is expired" });
+
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpires = undefined;
+    user.password = password;
+    await user.save();
+
+    return res.status(200).json({ message: "Password reset successfully" });
+  } catch (error) {
+    console.log("reset password error", error);
+    res.status(500).json({ message: "reset password server error" });
+  }
+};
 const AdminSignIn = async (req, res) => {
   try {
     const { email, password } = req.body || {};
@@ -500,7 +499,7 @@ const updateProfile = async (req, res) => {
   }
 };
 
-export  {
+export {
   SignUpRequest,
   verifySignUpOtp,
   AdminSignIn,

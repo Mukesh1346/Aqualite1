@@ -21,7 +21,7 @@ const productSchema = new mongoose.Schema(
         stock: {
             type: Number,
             required: true,
-           default: Number.MAX_SAFE_INTEGER
+            default: Number.MAX_SAFE_INTEGER
         },
         finalPrice: {
             type: Number,
@@ -35,25 +35,29 @@ const productSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        material:{
-            type:String,
-            required:true
+        material: {
+            type: String,
+            required: true
         },
-        weight:{
-            type:String,
-            required:true
+        weight: {
+            type: String,
+            required: true
         },
-        sku:{
-            type:String,
-            required:true
+        size: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Size",
+        }],
+        sku: {
+            type: String,
+            required: true
         },
         dimensionsInch: {
-          type:String,
-          required:true  
+            type: String,
+            required: true
         },
-        dimensionsCm:{
-            type:String,
-            required:true
+        dimensionsCm: {
+            type: String,
+            required: true
         },
         category: {
             type: mongoose.Schema.Types.ObjectId,
@@ -63,24 +67,24 @@ const productSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: "SubCategory",
         },
-        Specifications:{
-            type:String,
-            required:true
+        Specifications: {
+            type: String,
+            required: true
         },
-        BrandCollectionOverview:{
-            type:String,
-            required:true
+        BrandCollectionOverview: {
+            type: String,
+            required: true
         },
-        CareMaintenance:{
-            type:String,
-            required:true
+        CareMaintenance: {
+            type: String,
+            required: true
         },
-        seller:{
-            type:String
+        seller: {
+            type: String
         },
-        Warranty:{
-            type:String,
-            required:true
+        Warranty: {
+            type: String,
+            required: true
         },
         isFeatured: {
             type: Boolean,

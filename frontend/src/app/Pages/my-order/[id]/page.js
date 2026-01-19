@@ -33,14 +33,14 @@ const dummyOrder = {
 
 const OrderDetails = () => {
   const { id } = useParams();
-const [order,setOrder]=useState({})
+  const [order, setOrder] = useState({})
   // const order = dummyOrder; // later replace with real data
-  const totalAmount =order?.items && order?.items?.reduce((total, item) => total + item.productId.finalPrice * item.quantity, 0);
-
-  const fetchOrderDetails=async()=>{
+  const totalAmount = order?.items && order?.items?.reduce((total, item) => total + (item.mattressFinalPrice || item.productId.finalPrice * item.quantity), 0);
+  console.log("XXXCC:=>", order, totalAmount)
+  const fetchOrderDetails = async () => {
     try {
-   const response=   await axiosInstance(`/api/v1/order/get-order-by-id/${id}`)
-   setOrder(response?.data?.order)
+      const response = await axiosInstance(`/api/v1/order/get-order-by-id/${id}`)
+      setOrder(response?.data?.order)
     } catch (error) {
       console.log("Error fetching order details:", error);
       toast.error(error?.response?.data?.message || "Failed to fetch order details.");
@@ -55,20 +55,19 @@ const [order,setOrder]=useState({})
 
       <div className="mb-4 p-3 bg-light rounded">
         <p><strong>Order ID:</strong> {order?.orderUniqueId}</p>
-        <p><strong>Order Date:</strong> {order?.date && new Date(order?.createdAt).toLocaleDateString()}</p>
-     <p>
-  <strong>Status:</strong>{" "}
-  <span className={`badge ${
-    order?.orderStatus === "Placed" ? "bg-primary" :
-    order?.orderStatus === "Confirmed" ? "bg-info" :
-    order?.orderStatus === "Shipped" ? "bg-warning" :
-    order?.orderStatus === "Delivered" ? "bg-success" :
-    order?.orderStatus === "Cancelled" ? "bg-danger" :
-    "bg-secondary"
-  }`}>
-    {order?.orderStatus}
-  </span>
-</p>
+        <p><strong>Order Date:</strong> {order?.createdAt && new Date(order?.createdAt).toLocaleString()}</p>
+        <p>
+          <strong>Status:</strong>{" "}
+          <span className={`badge ${order?.orderStatus === "Placed" ? "bg-primary" :
+            order?.orderStatus === "Confirmed" ? "bg-info" :
+              order?.orderStatus === "Shipped" ? "bg-warning" :
+                order?.orderStatus === "Delivered" ? "bg-success" :
+                  order?.orderStatus === "Cancelled" ? "bg-danger" :
+                    "bg-secondary"
+            }`}>
+            {order?.orderStatus}
+          </span>
+        </p>
         <p><strong>Payment Method:</strong> {order?.paymentStatus}</p>
       </div>
 
@@ -90,16 +89,17 @@ const [order,setOrder]=useState({})
                   <Image src={product?.productId?.images[0]} alt={product?.productId.productName} width={80} height={80} className="rounded" />
                 </td>
                 <td>{product?.productId.productName}</td>
-                <td>₹{product?.productId.finalPrice}</td>
+                <td>₹{product?.mattressFinalPrice || product?.productId.finalPrice}</td>
                 <td>{product?.quantity}</td>
-                <td>₹{product?.productId.finalPrice * product?.quantity}</td>
+                <td>₹{product?.mattressFinalPrice || product?.productId.finalPrice * product?.quantity}</td>
               </tr>
             ))}
           </tbody>
           <tfoot>
             <tr>
               <td colSpan="4" className="text-end"><strong>Grand Total:</strong></td>
-              <td><strong>₹{totalAmount}</strong></td>
+              {/* <td><strong>₹{totalAmount}</strong></td> */}
+              <td><strong>₹{order?.totalAmount}</strong></td>
             </tr>
           </tfoot>
         </table>

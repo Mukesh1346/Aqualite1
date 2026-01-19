@@ -21,23 +21,23 @@ import CertificationModal from "./Components/Certifications/Certification";
 export default function Home() {
   return (
     <>
-     <HeroSection/>    
-      <Features/>
-      <TopTrending/>
-     <FloatingWhatsApp/>
-      <ReelSection/>
-      <ProductSlider/>
-      <Collection/>
-      <MattressFeatures/>
-      <CoustomerService/>
-   
-      <Carousel/>
-      <Reviews/>
-      <AnimatedCard/>
-      {/* <TestimonialSlider/> */}
+      <HeroSection />
+      <Features />
+      <TopTrending />
+      <FloatingWhatsApp />
+      <ReelSection />
+      <ProductSlider />
+      <Collection />
+      <MattressFeatures />
+      <CoustomerService />
+
+      <Carousel />
+      <Reviews />
+      <AnimatedCard />
+      {/* // <TestimonialSlider/> */}
       <FAQ />
 
     </>
-   
+
   );
 }

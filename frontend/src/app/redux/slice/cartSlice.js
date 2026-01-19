@@ -14,7 +14,7 @@ export const fetchCartItems = createAsyncThunk(
   async (thunkAPI) => {
     try {
       const res = await axiosInstance.get("/api/v1/cart/get-cart");
-   
+      console.log("XXXXXXXXX>>=>", res)
       return res?.data?.cart?.items;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -26,12 +26,12 @@ export const updateQuantity = createAsyncThunk(
   "cart/updateQuantityToServer",
   async (payload, thunkAPI) => {
     try {
-        const { productId, action } = payload;
+      const { productId, action } = payload;
       const res = await axiosInstance.put("/api/v1/cart/update-cart-quantity", {
         productId,
         action,
       });
-     
+
       return res;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -45,7 +45,7 @@ export const AddToCartToServer = createAsyncThunk(
       const res = await axiosInstance.post("/api/v1/cart/add-to-cart", {
         items: [items],
       });
-    
+
       return res.updatedCart;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -77,6 +77,11 @@ const cartSlice = createSlice({
         dimensionsCm,
         finalPrice,
         discount,
+        sizeName,
+        thickness,
+        mattressDimension,
+        mattressPrice,
+        mattressFinalPrice
       } = action.payload;
 
       const existingItem = state.items?.find(
@@ -95,6 +100,11 @@ const cartSlice = createSlice({
           dimensionsCm,
           finalPrice,
           discount,
+          sizeName,
+          thickness,
+          mattressDimension,
+          mattressPrice,
+          mattressFinalPrice
         });
       }
 

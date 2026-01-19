@@ -195,12 +195,12 @@ export default function Checkout() {
   };
 
   const total = items.reduce((sum, item) => {
-    const product = item.productId;
+    const product = item?.productId;
     if (!product) return sum;
+    console.log("XXXCC:=>", item)
+    const finalPrice = item?.mattressPrice || product?.price - (item?.mattressPrice || product?.price * product?.discount) / 100;
 
-    const finalPrice = product.price - (product.price * product.discount) / 100;
-
-    return sum + finalPrice * item.quantity;
+    return sum + finalPrice * item?.quantity;
   }, 0);
 
   useEffect(() => {
@@ -217,7 +217,7 @@ export default function Checkout() {
         }
       }
     }
-  }, [loading,dispatch,user]);
+  }, [loading, dispatch, user]);
 
   useEffect(() => {
     fetchCoupons();
@@ -404,10 +404,10 @@ export default function Checkout() {
                                 />
                               </td>
                               <td>{item?.productId?.productName}</td>
-                              <td>{item?.productId?.finalPrice}</td>
+                              <td>{item?.mattressFinalPrice || item?.productId?.finalPrice}</td>
                               <td>{item?.quantity}</td>
                               <td>
-                                {item?.productId?.finalPrice * item?.quantity}
+                                {item?.mattressFinalPrice || item?.productId?.finalPrice * item?.quantity}
                               </td>
                             </tr>
                           </tbody>

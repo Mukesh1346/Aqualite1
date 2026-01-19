@@ -170,12 +170,12 @@ export default function Products() {
                         height={40}
                         width={40}
                       />
-                      <b
+                      {/* <b
                         className={`card-text text-muted ${styles.productCardDescription}`}
                         dangerouslySetInnerHTML={{
                           __html: product.description,
                         }}
-                      ></b>
+                      ></b> */}
                     </div>
                     <div className="d-flex align-items-center m-0">
                       <p className={`card-text ${styles.productCardPrice} m-0`}>

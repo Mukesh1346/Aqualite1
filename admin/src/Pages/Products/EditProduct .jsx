@@ -14,10 +14,13 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import DescriptionIcon from "@mui/icons-material/Description";
 import SettingsIcon from "@mui/icons-material/Settings";
 import capitalizeFirstLetter from "../../services/capitalizeFirstLetter.js";
+import { Autocomplete, TextField } from "@mui/material";
+
 const EditProduct = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [categoryList, setCategoryList] = useState([]);
   const [subcategoryList, setSubcategoryList] = useState([]);
+  const [sizeList, setSizeList] = useState([]);
   const [formData, setFormData] = useState({
     productName: "",
     images: [],
@@ -87,6 +90,7 @@ const EditProduct = () => {
           CareMaintenance: data.CareMaintenance,
           seller: data.seller,
           Warranty: data.Warranty,
+          size: data.size,
         });
         try {
           const res = await axiosInstance.get(
@@ -107,9 +111,28 @@ const EditProduct = () => {
       toast.error(error?.response?.data?.message || "fetched product details");
     }
   };
+
+  const fetchSizes = async () => {
+    try {
+      const response = await axiosInstance.get(
+        "/api/v1/size/get-all-sizes"
+      );
+      if (response?.status === 200) {
+        setSizeList(response.data.data);
+      }
+    } catch (error) {
+      toast.error(
+        error.response
+          ? error.response.data.message
+          : "Error fetching Size data"
+      );
+    }
+  }
+
   useEffect(() => {
     fetchCategory();
     fetchProductDetails();
+    fetchSizes();
   }, []);
 
   const handleChange = (e) => {
@@ -157,9 +180,11 @@ const EditProduct = () => {
         value.forEach((item) => {
           payload.append(key, item);
         });
-      } 
-       else if (key === "productName") {
+      }
+      else if (key === "productName") {
         payload.append("productName", capitalizeFirstLetter(value));
+      } else if (key === "size") {
+        payload.append("size", JSON.stringify(value));
       }
       else {
         payload.append(key, value);
@@ -185,7 +210,7 @@ const EditProduct = () => {
       console.error(error);
       toast.error(
         error?.response?.data?.message ||
-          "Failed to update product. Please try again."
+        "Failed to update product. Please try again."
       );
     } finally {
       setIsLoading(false);
@@ -224,7 +249,7 @@ const EditProduct = () => {
         </div>
       </div>
 
-    <div className="d-form">
+      <div className="d-form">
         <form className="row g-3 mt-2" onSubmit={handleSubmit}>
           {/* <div className="col-md-3">
             <label className="form-label">Product Image*</label>
@@ -386,21 +411,31 @@ const EditProduct = () => {
             />
           </div>
 
-          {/* <div className="col-md-3">
-            <label className="form-label">Select Type</label>
+          <div className="col-md-6">
+            <label className="form-label">Select Size</label>
             <Autocomplete
               multiple
-              options={typeOptions}
+              options={sizeList}
+              getOptionLabel={(option) => option.name || ""}
 
-              value={typeOptions.filter((opt) => formData.type.includes(opt.name))}
-              onChange={(e, newValue) => setFormData((prev) => ({ ...prev, type: newValue.map((opt) => opt.name), }))
+              /* 🔑 VALUE: filter options by stored IDs */
+              value={sizeList?.filter((opt) =>
+                formData?.size?.includes(opt._id)
+              )}
+
+              /* 🔑 ON CHANGE: store only IDs */
+              onChange={(e, newValue) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  size: newValue.map((item) => item?._id),
+                }))
               }
-              getOptionLabel={(option) => option.name}
-              // value={typeOptions.find((opt) => opt.name === formData.type) || null}
-              // onChange={(e, value) => setFormData({ ...formData, type: value?.name || "" })}
-              renderInput={(params) => <TextField {...params} label="Select Type" />}
+
+              renderInput={(params) => (
+                <TextField {...params} label="Select Size" />
+              )}
             />
-          </div> */}
+          </div>
           <h3
             style={{
               fontSize: "20px",
