@@ -78,6 +78,7 @@ const createWishlist = async (req, res) => {
   }
 };
 
+
 const getAllWishlists = async (req, res) => {
   try {
     if (!req?.user?._id) {
